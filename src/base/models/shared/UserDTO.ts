@@ -1,0 +1,7 @@
+export class UserDTO {
+    Id: string = '';
+    Email: string = '';
+    FullName: string = '';
+    Username: string = '';
+    PhoneNumber: string = '';
+}

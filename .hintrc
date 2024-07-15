@@ -1,0 +1,31 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "detect-css-reflows/layout": "off",
+    "highest-available-document-mode": "off",
+    "meta-viewport": "off",
+    "no-inline-styles": "off",
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "-webkit-text-size-adjust",
+          "-webkit-tap-highlight-color",
+          "-webkit-overflow-scrolling",
+          "@-ms-viewport",
+          "@-ms-viewport",
+          "-webkit-text-decoration-skip"
+        ]
+      }
+    ],
+    "axe/name-role-value": [
+      "default",
+      {
+        "link-name": "off"
+      }
+    ],
+    "typescript-config/strict": "off"
+  }
+}

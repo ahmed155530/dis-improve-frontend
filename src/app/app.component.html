@@ -1,0 +1,8 @@
+<router-outlet [dir]="translationService.dir$|async">
+    <ngx-spinner *ngIf="spinnerService.loading$ | async" bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#fff"
+    [fullScreen]="true">
+    <!-- <p style="color: white">
+      {{'Loading...'|translate}}
+    </p> -->
+  </ngx-spinner>
+</router-outlet>

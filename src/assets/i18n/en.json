@@ -1,0 +1,22 @@
+{
+    "sidebar": {
+        "dashboard": "Dashboard",
+        "governments": "Governments",
+        "topicsCategory": "Topics Category",
+        "topics": "Topics"
+    },
+    "topicCategory": {
+        "id": "ID",
+        "name": "Name",
+        "actions": "Actions"
+    },
+    "buttons": {
+        "edit": "ُEdit",
+        "delete": "Delete"
+    },
+    "navbar": {},
+    "Login": "Login",
+    "username": "Username",
+    "password": "Password",
+    "Clear": "Clear"
+}

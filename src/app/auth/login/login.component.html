@@ -1,0 +1,56 @@
+<div class="auth-container">
+    <div class="row auth-main left-img"
+        style="background-image: url(./assets/img/auth-backgrounds/auth-background-1.jpg)">
+
+        <div class="col-sm-6 auth-form-section">
+            <div class="form-section">
+                <form class="auth-wrapper" [formGroup]="form" *ngIf="form">
+                    <h2 class="login-title">{{'Login'|translate}}</h2>
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="col-sm-12 px-0 d-none d-sm-block">
+                            <mat-label>{{'login.phoneNumber'|translate}}</mat-label>
+                            <input matInput formControlName="phoneNumber">
+                            <mat-icon matPrefix>phone</mat-icon>
+                            <mat-error
+                                *ngIf="form.get('phoneNumber').hasError('required') && form.get('phoneNumber').touched">
+                                {{"messages.This field is required" |translate}}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="row">
+                        <mat-form-field appearance="outline" class="col-sm-12 px-0 d-none d-sm-block">
+                            <mat-label>{{'login.password'|translate}}</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon matSuffix>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-icon matPrefix>lock</mat-icon>
+                            <mat-error
+                                *ngIf="form.get('password').hasError('required') && form.get('password').touched">
+                                {{"messages.This field is required" |translate}}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="row" style="color: white;">
+
+                        <!-- <div class="example-button-container">
+                            <button mat-flat-button color="accent" matTooltip="{{'Clear'|translate}}" (click)="clearForm()">
+                              {{'Reset'|translate}}
+                            </button>
+                        </div> -->
+
+
+                        <button style="width: 100%;" mat-flat-button color="primary" [disabled]="!form.valid"
+                            (click)="Login()">
+                            <!-- <mat-icon style="color: pink;">close</mat-icon> -->
+                            {{'Login'|translate}}
+                        </button>
+
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
