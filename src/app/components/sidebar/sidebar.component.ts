@@ -17,7 +17,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/admin/admin-list', title: 'sidebar.admins', icon: 'shield_person', class: '', roles: ['Admin'], show: false },
   { path: '/admin/company-list', title: 'sidebar.companies', icon: 'source_environment', class: '', roles: ['Admin'], show: false },
   { path: '/admin/data-entry-list', title: 'sidebar.dataEntry', icon: 'database', class: '', roles: ['Admin'], show: false },
-  { path: '/admin/data-list', title: 'sidebar.data', icon: 'description', class: '', roles: ['Admin'], show: false },
+  { path: '/data-entry/data-list', title: 'sidebar.data', icon: 'description', class: '', roles: ['Admin'], show: false },
 ];
 
 @Component({

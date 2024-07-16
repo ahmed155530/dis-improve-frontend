@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 
-import { AdminRoutingModule } from './admin-routing.module';
-import { AdminListComponent } from './admin-list/admin-list.component';
+import { DataEntryRoutingModule } from './data-entry-routing.module';
+import { DataListComponent } from './data-list/data-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule, MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,25 +19,17 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxTranslateModule } from 'base/modules/ngx-translate.module';
-import { AddEditAdminComponent } from './admin-list/add-edit-admin/add-edit-admin.component';
-import { CompanyListComponent } from './company-list/company-list.component';
-import { AddEditCompanyComponent } from './company-list/add-edit-company/add-edit-company.component';
-import { DataEntryListComponent } from './data-entry-list/data-entry-list.component';
-import { AddEditDataEntryComponent } from './data-entry-list/add-edit-data-entry/add-edit-data-entry.component';
+import { AddEditDataComponent } from './data-list/add-edit-data/add-edit-data.component';
 
 
 @NgModule({
   declarations: [
-    AdminListComponent,
-    AddEditAdminComponent,
-    CompanyListComponent,
-    AddEditCompanyComponent,
-    DataEntryListComponent,
-    AddEditDataEntryComponent
+    DataListComponent,
+    AddEditDataComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule,
+    DataEntryRoutingModule,
     MatPaginatorModule,
     FormsModule,
     ReactiveFormsModule,
@@ -58,4 +50,4 @@ import { AddEditDataEntryComponent } from './data-entry-list/add-edit-data-entry
     MatDatepickerModule
   ]
 })
-export class AdminModule { }
+export class DataEntryModule { }

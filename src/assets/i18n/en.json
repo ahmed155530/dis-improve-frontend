@@ -11,7 +11,7 @@
         "name": "Name",
         "username": "Username",
         "phoneNumber": "Phone Number",
-        "nid": "Identification number or passport number",
+        "nid": "ID/passport number",
         "registrationDate": "Registration Date",
         "actions": "Actions",
         "email": "Email",
@@ -26,6 +26,32 @@
         "phoneNumber": "Phone Number",
         "registrationDate": "Registration Date",
         "actions": "Actions"
+    },
+    "dataEntries": {
+        "id": "ID",
+        "name": "Name",
+        "username": "Username",
+        "phoneNumber": "Phone Number",
+        "nid": "ID/passport number",
+        "registrationDate": "Registration Date",
+        "actions": "Actions",
+        "email": "Email",
+        "password": "Password",
+        "status": "Status",
+        "confirmPassword": "Confirm Password"
+    },
+    "data": {
+        "id": "ID",
+        "name": "Name",
+        "companyName": "Company",
+        "username": "Username",
+        "country": "Country",
+        "phoneNumber": "Phone Number",
+        "nid": "ID/passport number",
+        "registrationDate": "Registration Date",
+        "actions": "Actions",
+        "email": "Email",
+        "status": "Status"
     },
     "buttons": {
         "edit": "ُEdit",

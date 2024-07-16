@@ -30,6 +30,33 @@
       "registrationDate": "تاريخ التسجيل",
       "actions": "الإجراءات"
    },
+   "dataEntries": {
+      "id": "م",
+      "name": "الإسم",
+      "username": "إسم المستخدم",
+      "nid": "رقم الهوية / رقم الباسبور",
+      "phoneNumber": "رقم التليفون",
+      "actions": "الإجراءات",
+      "email": "البريد الإليكتروني",
+      "password": "كلمة المرور",
+      "status": "الحالة",
+      "confirmPassword": "تأكيد كلمة المرور",
+      "registrationDate": "تاريخ التسجيل"
+   },
+   "data": {
+      "id": "م",
+      "name": "الإسم",
+      "companyName": "الشركة",
+      "username": "إسم المستخدم",
+      "nid": "رقم الهوية / رقم الباسبور",
+      "phoneNumber": "رقم التليفون",
+      "country": "الجنسية",
+      "actions": "الإجراءات",
+      "email": "البريد الإليكتروني",
+      "password": "كلمة المرور",
+      "status": "الحالة",
+      "registrationDate": "تاريخ التسجيل"
+   },
    "login": {
       "phoneNumber": "رقم التليفون",
       "username": "إسم المستخدم",
