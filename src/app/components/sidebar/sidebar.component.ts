@@ -14,10 +14,10 @@ declare interface RouteInfo {
 }
 export const ROUTES: RouteInfo[] = [
   { path: '/dashboard', title: 'sidebar.dashboard', icon: 'analytics', class: '', roles: [AuthRole.Admin, AuthRole.Collector], show: false },
-  { path: '/admin/users/admins', title: 'sidebar.admins', icon: 'shield_person', class: '', roles: ['Admin'], show: false },
-  { path: '/admin/users/companies', title: 'sidebar.companies', icon: 'source_environment', class: '', roles: ['Admin'], show: false },
-  { path: '/admin/users/data-entry', title: 'sidebar.dataEntry', icon: 'database', class: '', roles: ['Admin'], show: false },
-  { path: '/admin/users/data', title: 'sidebar.data', icon: 'description', class: '', roles: ['Admin'], show: false },
+  { path: '/admin/admin-list', title: 'sidebar.admins', icon: 'shield_person', class: '', roles: ['Admin'], show: false },
+  { path: '/admin/company-list', title: 'sidebar.companies', icon: 'source_environment', class: '', roles: ['Admin'], show: false },
+  { path: '/admin/data-entry-list', title: 'sidebar.dataEntry', icon: 'database', class: '', roles: ['Admin'], show: false },
+  { path: '/admin/data-list', title: 'sidebar.data', icon: 'description', class: '', roles: ['Admin'], show: false },
 ];
 
 @Component({

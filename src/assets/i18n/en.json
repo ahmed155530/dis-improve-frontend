@@ -6,9 +6,28 @@
         "dataEntry": "Data entry",
         "data": "Data"
     },
+    "admins": {
+        "id": "ID",
+        "name": "Name",
+        "username": "Username",
+        "phoneNumber": "Phone Number",
+        "registerationDate": "Registeration Date",
+        "actions": "Actions",
+        "email": "Email",
+        "password": "Password",
+        "status": "Status",
+        "confirmPassword": "Confirm Password"
+     },
     "buttons": {
         "edit": "ُEdit",
-        "delete": "Delete"
+        "delete": "Delete",
+        "add": "Add",
+        "create": "Create",
+        "cancel": "Cancel",
+        "update": "Update",
+        "search": "Search",
+        "up": "Up",
+        "down": "Down"
     },
     "navbar": {
         "user": {

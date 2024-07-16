@@ -12,16 +12,14 @@
    "admins": {
       "id": "م",
       "name": "الإسم",
-      "firstName": "الإسم الأول",
-      "middleName": "الإسم الأوسط",
-      "lastName": "الإسم الأخير",
       "username": "إسم المستخدم",
       "phoneNumber": "رقم التليفون",
       "actions": "الإجراءات",
       "email": "البريد الإليكتروني",
       "password": "كلمة المرور",
       "status": "الحالة",
-      "confirmPassword": "تأكيد كلمة المرور"
+      "confirmPassword": "تأكيد كلمة المرور",
+      "registerationDate": "تاريخ التسجيل"
    },
    "login": {
       "phoneNumber": "رقم التليفون",
@@ -37,12 +35,7 @@
       "update": "تعديل",
       "search": "بحث",
       "up": "لأعلى",
-      "down": "لأسفل",
-      "block": "إيقاف",
-      "unblock": "تفعيل",
-      "cash": "الدفع عن طريق المحصل",
-      "exemption": "إعفاء",
-      "excel": "تصدير إلى اكسيل"
+      "down": "لأسفل"
    },
    "status": {
       "activated": "مفعل",
