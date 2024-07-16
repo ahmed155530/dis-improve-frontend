@@ -20,12 +20,16 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxTranslateModule } from 'base/modules/ngx-translate.module';
 import { AddEditAdminComponent } from './admin-list/add-edit-admin/add-edit-admin.component';
+import { CompanyListComponent } from './company-list/company-list.component';
+import { AddEditCompanyComponent } from './company-list/add-edit-company/add-edit-company.component';
 
 
 @NgModule({
   declarations: [
     AdminListComponent,
-    AddEditAdminComponent
+    AddEditAdminComponent,
+    CompanyListComponent,
+    AddEditCompanyComponent
   ],
   imports: [
     CommonModule,

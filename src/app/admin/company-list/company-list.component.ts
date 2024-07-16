@@ -1,29 +1,30 @@
 import { AfterContentInit, Component, Injector, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { Gender } from 'base/constants/Gender';
 import { UserTypes } from 'base/constants/UserTypes';
 import { Stations } from 'base/Data/Stations';
 import { BaseService } from 'base/services/base.service';
-import { AddEditAdminComponent } from './add-edit-admin/add-edit-admin.component';
 import { takeUntil } from 'rxjs';
+import { AddEditAdminComponent } from '../admin-list/add-edit-admin/add-edit-admin.component';
+import { AddEditCompanyComponent } from './add-edit-company/add-edit-company.component';
 
 @Component({
-  selector: 'app-admin-list',
-  templateUrl: './admin-list.component.html',
-  styleUrls: ['./admin-list.component.scss']
+  selector: 'app-company-list',
+  templateUrl: './company-list.component.html',
+  styleUrls: ['./company-list.component.scss']
 })
-export class AdminListComponent extends BaseService implements OnInit, AfterContentInit {
+export class CompanyListComponent extends BaseService implements OnInit, AfterContentInit {
   form: FormGroup = null;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   UserTypes = UserTypes;
-  Genders = Gender;
   displayedColumns: string[] = [
-    'admins.id',
-    'admins.name',
-    'admins.phoneNumber',
-    'admins.registrationDate',
-    'admins.actions',
+    'companies.id',
+    'companies.name',
+    'companies.email',
+    'companies.phoneNumber',
+    'companies.registrationDate',
+    'companies.actions',
   ];
   dataSource: any = [];
   stations: any[] = Stations;
@@ -56,18 +57,18 @@ export class AdminListComponent extends BaseService implements OnInit, AfterCont
   }
 
   createObject() {
-    this.dialog.open(AddEditAdminComponent)
+    this.dialog.open(AddEditCompanyComponent)
       .afterClosed()
       .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((adminDTO: any) => {
-        if (adminDTO) {
-          // this.GetAllAdmins();
+      .subscribe((companyDTO: any) => {
+        if (companyDTO) {
+          // this.GetAllCompanies();
         }
       });
   }
 
   handlePaginator(paginator: MatPaginator) {
     console.log(paginator);
-    // this.GetSanitationAppUsers();
+    // this.GetAllCompanies();
   }
 }

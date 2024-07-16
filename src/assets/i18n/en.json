@@ -11,14 +11,22 @@
         "name": "Name",
         "username": "Username",
         "phoneNumber": "Phone Number",
-        "nid":"Identification number or passport number",
-        "registerationDate": "Registeration Date",
+        "nid": "Identification number or passport number",
+        "registrationDate": "Registration Date",
         "actions": "Actions",
         "email": "Email",
         "password": "Password",
         "status": "Status",
         "confirmPassword": "Confirm Password"
-     },
+    },
+    "companies": {
+        "id": "ID",
+        "name": "Name",
+        "email": "Email",
+        "phoneNumber": "Phone Number",
+        "registrationDate": "Registration Date",
+        "actions": "Actions"
+    },
     "buttons": {
         "edit": "ُEdit",
         "delete": "Delete",

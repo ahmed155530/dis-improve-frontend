@@ -20,7 +20,15 @@
       "password": "كلمة المرور",
       "status": "الحالة",
       "confirmPassword": "تأكيد كلمة المرور",
-      "registerationDate": "تاريخ التسجيل"
+      "registrationDate": "تاريخ التسجيل"
+   },
+   "companies": {
+      "id": "م",
+      "email": "البريد الإليكتروني",
+      "name": "الإسم",
+      "phoneNumber": "رقم المحمول",
+      "registrationDate": "تاريخ التسجيل",
+      "actions": "الإجراءات"
    },
    "login": {
       "phoneNumber": "رقم التليفون",
