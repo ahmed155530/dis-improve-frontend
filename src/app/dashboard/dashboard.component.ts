@@ -1,5 +1,4 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { AdminLookupsController } from 'base/APIs/AdminLookupsController';
 import { BaseService } from 'base/services/base.service';
 import * as Chartist from 'chartist';
 
@@ -155,25 +154,6 @@ export class DashboardComponent extends BaseService implements OnInit {
   // }
 
   ngOnInit(): void {
-    // this.GetDashboardUsersCounts();
-  }
-
-  GetDashboardUsersCounts() {
-    this.spinnerService.show();
-    this.httpService.GET(AdminLookupsController.GetDashboardUsersCounts).subscribe({
-      next: (res) => {
-        if (res.isSuccess) {
-          this.counts = res.data;
-          this.spinnerService.hide();
-        }
-      },
-      error: (err: Error) => {
-        this.spinnerService.hide();
-      },
-      complete: () => {
-        this.spinnerService.hide();
-      }
-    });
   }
 
 }

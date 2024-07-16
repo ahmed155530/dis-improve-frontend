@@ -11,6 +11,7 @@
         "name": "Name",
         "username": "Username",
         "phoneNumber": "Phone Number",
+        "nid":"Identification number or passport number",
         "registerationDate": "Registeration Date",
         "actions": "Actions",
         "email": "Email",
