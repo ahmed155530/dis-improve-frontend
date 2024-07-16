@@ -4,66 +4,10 @@
    },
    "sidebar": {
       "dashboard": "لوحة التحكم",
-      "governments": "المحافظات",
-      "topicsCategory": "أقسام المقالات",
-      "topics": "المقالات",
-      "irrigationAdvices": "نصائح عامة",
-      "subscriptions": "الإشتراكات",
-      "users": "المستخدمين",
-      "collectors": "محصلي الرسوم",
-      "qualityControl": "مراقبين الجودة",
-      "sanitations": "الصرف الصحي",
-      "sanitationsUsers": "مستخدمي الصرف الصحي",
-      "qualityControlUsers": "مراقبين الجودة",
       "admins": "مسؤولي التحكم",
-      "appUsers": "مستخدمي التطبيق",
-      "paymentTransactions": "عمليات الدفع",
-      "paidReceipts": "الفواتير المُسددة",
-      "pendingReceipts": "الفواتير المُستحقة"
-   },
-   "dashboard": {
-      "userCounts": "عدد المستخدمين",
-      "allUsersCounts": "العدد الكلي للمستخدمين",
-      "farmCounts": "المزارعين",
-      "allfarmTypeCounts": "العدد الكلي للمستخدمين المزارعين",
-      "sanitationCounts": "الصرف الصحي",
-      "allSanitationTypeCounts": "العدد الكلي لمستخدمي الصرف الصحي",
-      "bothTypes": "كلاهما",
-      "bothTypesCounts": "العدد الكلي زراعة وصرف صحي معاً",
-      "cashCollectors":"محصلي الرسوم",
-      "cashCollectorsCount": "العدد الكلي لمحصلي الرسوم",
-      "qualityControlsCount" : "لمراقبين الجودة",
-      "allQualityControlsCount" : "العدد الكلي لمراقبين الجودة",
-      "visitorsCount":"الزائرين",
-      "allVisitorsCount": "العدد الكلي للزائرين"
-   },
-   "topicCategory": {
-      "id": "م",
-      "name": "الإسم",
-      "actions": "الإجراءات"
-   },
-   "topic": {
-      "id": "م",
-      "thumbnail": "الغلاف",
-      "title": "العنوان",
-      "categoryName": "القسم",
-      "irrigationAdvices": "نصائح عامة",
-      "actions": "الإجراءات",
-      "description": "الفقرة",
-      "descriptionNo": "الفقرة رقم",
-      "mediaNo": "وسائط رقم",
-      "descriptions": "الفقرات",
-      "media": "الوسائط",
-      "image": "صورة",
-      "video": "فيديو"
-   },
-   "station": {
-      "id": "م",
-      "station": "المحطة",
-      "village": "القرية",
-      "governorate": "المحافظة",
-      "subscription": "قيمة الإشتراك",
-      "actions": "الإجراءات"
+      "companies": "الشركات",
+      "dataEntry": "مدخلي البيانات",
+      "data": "البيانات"
    },
    "admins": {
       "id": "م",
@@ -79,109 +23,9 @@
       "status": "الحالة",
       "confirmPassword": "تأكيد كلمة المرور"
    },
-   "collectors": {
-      "id": "م",
-      "name": "الإسم",
-      "firstName": "الإسم الأول",
-      "middleName": "الإسم الأوسط",
-      "lastName": "الإسم الأخير",
-      "username": "إسم المستخدم",
-      "phoneNumber": "رقم التليفون",
-      "actions": "الإجراءات",
-      "email": "البريد الإليكتروني",
-      "password": "كلمة المرور",
-      "status": "الحالة",
-      "confirmPassword": "تأكيد كلمة المرور"
-   },
-   "sanitations": {
-      "id": "م",
-      "name": "الإسم",
-      "fullName": "الإسم كامل",
-      "phoneNumber": "رقم التليفون",
-      "gender": "النوع",
-      "sanitationStationName": "محطة التسجيل",
-      "actions": "الإجراءات",
-      "registrationDate": "تاريخ التسجيل",
-      "status": "الحالة"
-   },
-   "qualityControls": {
-      "id": "م",
-      "name": "الإسم",
-      "fullName": "الإسم كامل",
-      "phoneNumber": "رقم التليفون",
-      "gender": "النوع",
-      "stationName": "محطة التسجيل",
-      "actions": "الإجراءات",
-      "registrationDate": "تاريخ التسجيل",
-      "status": "الحالة"
-   },
-   "appUsers": {
-      "id": "م",
-      "name": "الإسم",
-      "firstName": "الإسم الأول",
-      "middleName": "الإسم الأوسط",
-      "lastName": "الإسم الأخير",
-      "username": "إسم المستخدم",
-      "phoneNumber": "رقم التليفون",
-      "userType": "نوع المستخدم",
-      "governorate": "المحافظة",
-      "farmStation": "محطة المزارع",
-      "sanitationStation": "محطة الصرف الصحي",
-      "actions": "الإجراءات",
-      "email": "البريد الإليكتروني",
-      "password": "كلمة المرور",
-      "status": "الحالة",
-      "confirmPassword": "تأكيد كلمة المرور",
-      "station": "المحطة",
-      "fullName": "الإسم",
-      "gender": "النوع",
-      "registrationDate": "تاريخ التسجيل",
-      "registrationDateFrom": "تاريخ التسجيل من",
-      "registrationDateTo": "تاريخ التسجيل إلى"
-   },
-   "paymentTransactions": {
-      "id": "م",
-      "name": "الإسم",
-      "phoneNumber": "رقم التليفون",
-      "paidAmount": "القيمة المدفوعة بالجنية",
-      "referenceNumber": "الرقم المرجعي",
-      "paymentDate": "تاريخ الدفع",
-      "searchKey": "معيار البحث",
-      "amount": "المبلغ",
-      "paymentDateFrom": "تاريخ الدفع من",
-      "paymentDateTo": "تاريخ الدفع إلى",
-      "actions": "الإجراءات"
-   },
-   "paidInvoices": {
-      "id": "م",
-      "invoiceName": "عنوان الفاتورة",
-      "invoiceDescription": "وصف الفاتورة",
-      "cost": "التكلفة بالجنية",
-      "customerName": "إسم العميل",
-      "dueDate": "تاريخ الإستحقاق",
-      "status": "الحالة",
-      "searchKey": "معيار البحث",
-      "paymentMethod": "طريقة الدفع",
-      "paymentDateFrom": "تاريخ الدفع من",
-      "paymentDateTo": "تاريخ الدفع إلى",
-      "actions": "الإجراءات"
-   },
-   "pendingInvoices": {
-      "id": "م",
-      "invoiceName": "عنوان الفاتورة",
-      "invoiceDescription": "وصف الفاتورة",
-      "cost": "التكلفة بالجنية",
-      "customerName": "إسم العميل",
-      "dueDate": "تاريخ الإستحقاق",
-      "searchKey": "معيار البحث",
-      "paymentMethod": "طريقة الدفع",
-      "dueDateFrom": "تاريخ الإستحقاق من",
-      "dueDateTo": "تاريخ الإستحقاق إلى",
-      "status": "الحالة",
-      "actions": "الإجراءات"
-   },
    "login": {
       "phoneNumber": "رقم التليفون",
+      "username": "إسم المستخدم",
       "password": "كلمة المرور"
    },
    "buttons": {
@@ -206,7 +50,7 @@
       "paid": "مكتمل الدفع",
       "pending": "بإنتظار الدفع",
       "registrationPending": "بإنتظار التسجيل",
-      "registrationCompleted":"إكتمل التسجيل"
+      "registrationCompleted": "إكتمل التسجيل"
    },
    "messages": {
       "This field is required": "هذا الحقل مطلوب",
@@ -233,6 +77,7 @@
    "navbar": {
       "user": {
          "profile": "الحساب الشخصي",
+         "changePassword": "تغيير كلمة المرور",
          "logout": "تسجيل خروج"
       }
    },

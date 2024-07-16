@@ -155,7 +155,7 @@ export class DashboardComponent extends BaseService implements OnInit {
   // }
 
   ngOnInit(): void {
-    this.GetDashboardUsersCounts();
+    // this.GetDashboardUsersCounts();
   }
 
   GetDashboardUsersCounts() {

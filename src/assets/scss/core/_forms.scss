@@ -354,12 +354,12 @@ fieldset[disabled] .form-group .form-control {
 .has-danger {
     .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
     .mat-form-field-empty.mat-form-field-label {
-        color: #54b5c2;
+        color: #8D493A;
     }
     &.mat-focused {
         .mat-input-underline {
             .mat-input-ripple {
-                background-color: #54b5c2;
+                background-color: #8D493A;
             }
         }
     }
@@ -367,7 +367,7 @@ fieldset[disabled] .form-group .form-control {
 
 .ng-invalid {
     &.mat-focused .mat-form-field-label {
-        color: #54b5c2;
+        color: #8D493A;
     }
 }
 

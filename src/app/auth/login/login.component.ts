@@ -24,7 +24,7 @@ export class LoginComponent extends BaseService implements OnInit {
 
   initForm() {
     this.form = this.fb.group({
-      phoneNumber: new FormControl<string>('', Validators.compose([Validators.required])),
+      username: new FormControl<string>('', Validators.compose([Validators.required])),
       password: new FormControl<string>('', Validators.compose([Validators.required])),
     });
   }
@@ -32,7 +32,7 @@ export class LoginComponent extends BaseService implements OnInit {
   clearForm() {
     this.form.reset();
     this.form.patchValue({
-      phoneNumber: '',
+      username: '',
       password: '',
     });
     this.form.updateValueAndValidity();

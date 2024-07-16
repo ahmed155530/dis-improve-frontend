@@ -1,20 +1,31 @@
 {
     "sidebar": {
         "dashboard": "Dashboard",
-        "governments": "Governments",
-        "topicsCategory": "Topics Category",
-        "topics": "Topics"
-    },
-    "topicCategory": {
-        "id": "ID",
-        "name": "Name",
-        "actions": "Actions"
+        "admins": "Admins",
+        "companies": "Companies",
+        "dataEntry": "Data entry",
+        "data": "Data"
     },
     "buttons": {
         "edit": "ُEdit",
         "delete": "Delete"
     },
-    "navbar": {},
+    "navbar": {
+        "user": {
+            "profile": "Profile",
+            "logout": "Logout",
+            "changePassword": "Change Password"
+        }
+    },
+    "messages": {
+        "This field is required": "This field is required",
+        "Min value is 1": "Min value is 1",
+        "passwordAndConfirmPasswordNotMatched": "كلمة المرور وتأكيد كلمة المرور غير متطابقان",
+        "Access Denied!": "Access Denied!",
+        "Sorry, you don't have permission to view the page": "Sorry, you don't have permission to view the page",
+        "Not found!": "Not found!",
+        "Sorry, no content for this page": "Sorry, no content for this page"
+    },
     "Login": "Login",
     "username": "Username",
     "password": "Password",

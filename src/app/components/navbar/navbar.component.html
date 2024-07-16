@@ -42,7 +42,7 @@
                         </p>
                     </a>
                 </li> -->
-                <li class="nav-item dropdown" style="text-align: center;">
+                <li class="nav-item dropdown" style="text-align: center;margin-inline-start: 40px;">
                     <a class="nav-link" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-expanded="false"
                         style="cursor: pointer;">
                         <img src="assets/img/new_logo.png"
@@ -54,6 +54,10 @@
                         <a class="dropdown-item" style="cursor: pointer;">
                             <i class="material-icons user-icon">person</i>
                             {{'navbar.user.profile'|translate}}
+                        </a>
+                        <a class="dropdown-item" style="cursor: pointer;">
+                            <i class="material-icons">password</i>
+                            {{'navbar.user.changePassword'|translate}}
                         </a>
                         <a class="dropdown-item" (click)="Logout()" style="cursor: pointer;">
                             <i class="material-icons">lock</i>

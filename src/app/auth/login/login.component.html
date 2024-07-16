@@ -8,11 +8,11 @@
                     <h2 class="login-title">{{'Login'|translate}}</h2>
                     <div class="row">
                         <mat-form-field appearance="outline" class="col-sm-12 px-0 d-none d-sm-block">
-                            <mat-label>{{'login.phoneNumber'|translate}}</mat-label>
-                            <input matInput formControlName="phoneNumber">
-                            <mat-icon matPrefix>phone</mat-icon>
+                            <mat-label>{{'login.username'|translate}}</mat-label>
+                            <input matInput formControlName="username">
+                            <mat-icon matPrefix>person</mat-icon>
                             <mat-error
-                                *ngIf="form.get('phoneNumber').hasError('required') && form.get('phoneNumber').touched">
+                                *ngIf="form.get('username').hasError('required') && form.get('username').touched">
                                 {{"messages.This field is required" |translate}}
                             </mat-error>
                         </mat-form-field>
