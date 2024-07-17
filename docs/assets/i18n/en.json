@@ -1,0 +1,87 @@
+{
+    "sidebar": {
+        "dashboard": "Dashboard",
+        "admins": "Admins",
+        "companies": "Companies",
+        "dataEntry": "Data entry",
+        "data": "Data"
+    },
+    "admins": {
+        "id": "ID",
+        "name": "Name",
+        "username": "Username",
+        "phoneNumber": "Phone Number",
+        "nid": "ID/passport number",
+        "registrationDate": "Registration Date",
+        "actions": "Actions",
+        "email": "Email",
+        "password": "Password",
+        "status": "Status",
+        "confirmPassword": "Confirm Password"
+    },
+    "companies": {
+        "id": "ID",
+        "name": "Name",
+        "email": "Email",
+        "phoneNumber": "Phone Number",
+        "registrationDate": "Registration Date",
+        "actions": "Actions"
+    },
+    "dataEntries": {
+        "id": "ID",
+        "name": "Name",
+        "username": "Username",
+        "phoneNumber": "Phone Number",
+        "nid": "ID/passport number",
+        "registrationDate": "Registration Date",
+        "actions": "Actions",
+        "email": "Email",
+        "password": "Password",
+        "status": "Status",
+        "confirmPassword": "Confirm Password"
+    },
+    "data": {
+        "id": "ID",
+        "name": "Name",
+        "companyName": "Company",
+        "username": "Username",
+        "country": "Country",
+        "phoneNumber": "Phone Number",
+        "nid": "ID/passport number",
+        "registrationDate": "Registration Date",
+        "actions": "Actions",
+        "email": "Email",
+        "status": "Status"
+    },
+    "buttons": {
+        "edit": "ُEdit",
+        "delete": "Delete",
+        "add": "Add",
+        "create": "Create",
+        "cancel": "Cancel",
+        "update": "Update",
+        "search": "Search",
+        "up": "Up",
+        "down": "Down"
+    },
+    "navbar": {
+        "user": {
+            "profile": "Profile",
+            "logout": "Logout",
+            "changePassword": "Change Password"
+        }
+    },
+    "messages": {
+        "This field is required": "This field is required",
+        "Min value is 1": "Min value is 1",
+        "passwordAndConfirmPasswordNotMatched": "كلمة المرور وتأكيد كلمة المرور غير متطابقان",
+        "Access Denied!": "Access Denied!",
+        "Sorry, you don't have permission to view the page": "Sorry, you don't have permission to view the page",
+        "Not found!": "Not found!",
+        "Sorry, no content for this page": "Sorry, no content for this page"
+    },
+    "Login": "Login",
+    "username": "Username",
+    "password": "Password",
+    "Clear": "Clear"
+}
