@@ -54,7 +54,8 @@
         "email": "Email",
         "password": "Password",
         "status": "Status",
-        "confirmPassword": "Confirm Password"
+        "country": "Country",
+        "company": "Company"
     },
     "data": {
         "id": "ID",

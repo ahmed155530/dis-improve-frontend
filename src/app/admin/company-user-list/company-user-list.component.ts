@@ -73,6 +73,17 @@ export class CompanyUserListComponent extends BaseService implements OnInit, Aft
       });
   }
 
+  Update(data: any) {
+    this.dialog.open(AddEditCompanyUserComponent, { data: data })
+      .afterClosed()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((adminDTO: any) => {
+        if (adminDTO) {
+          this.GetAllCompanyUsers();
+        }
+      });
+  }
+
   handlePaginator(paginator: MatPaginator) {
     console.log(paginator);
     this.GetAllCompanyUsers();

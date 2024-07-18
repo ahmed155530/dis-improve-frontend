@@ -58,7 +58,9 @@
       "password": "كلمة المرور",
       "status": "الحالة",
       "confirmPassword": "تأكيد كلمة المرور",
-      "registrationDate": "تاريخ التسجيل"
+      "registrationDate": "تاريخ التسجيل",
+      "country": "الدولة",
+      "company": "الشركة"
    },
    "data": {
       "id": "م",

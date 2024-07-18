@@ -4,4 +4,5 @@ export class UserDTO {
     FullName: string = '';
     Username: string = '';
     PhoneNumber: string = '';
+    UserTypeId: number = null;
 }

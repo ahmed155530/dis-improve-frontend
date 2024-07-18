@@ -8,6 +8,7 @@ import { BaseService } from 'base/services/base.service';
 import { takeUntil } from 'rxjs';
 import { AddEditAdminComponent } from '../admin-list/add-edit-admin/add-edit-admin.component';
 import { AddEditDataEntryComponent } from './add-edit-data-entry/add-edit-data-entry.component';
+import { UserController } from 'base/APIs/UserController';
 
 @Component({
   selector: 'app-data-entry-list',
@@ -22,7 +23,11 @@ export class DataEntryListComponent extends BaseService implements OnInit, After
   displayedColumns: string[] = [
     'dataEntries.id',
     'dataEntries.name',
+    'dataEntries.email',
+    'dataEntries.nid',
     'dataEntries.phoneNumber',
+    'dataEntries.company',
+    'dataEntries.country',
     'dataEntries.registrationDate',
     'dataEntries.actions',
   ];
@@ -40,6 +45,7 @@ export class DataEntryListComponent extends BaseService implements OnInit, After
   }
 
   ngOnInit() {
+    this.GetAllDataEntries();
     this.initForm();
   }
 
@@ -62,13 +68,42 @@ export class DataEntryListComponent extends BaseService implements OnInit, After
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((dataEntryDTO: any) => {
         if (dataEntryDTO) {
-          // this.GetAllDataEntries();
+          this.GetAllDataEntries();
+        }
+      });
+  }
+
+  Update(data: any) {
+    this.dialog.open(AddEditDataEntryComponent, { data: data })
+      .afterClosed()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((adminDTO: any) => {
+        if (adminDTO) {
+          this.GetAllDataEntries();
         }
       });
   }
 
   handlePaginator(paginator: MatPaginator) {
     console.log(paginator);
-    // this.GetAllDataEntries();
+    this.GetAllDataEntries();
+  }
+
+  GetAllDataEntries() {
+    this.spinnerService.show();
+    this.httpService.GET(`${UserController.GetAllUsers}/${1}`).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.dataSource = res.data;
+          this.spinnerService.hide();
+        }
+      },
+      error: (err: Error) => {
+        this.spinnerService.hide();
+      },
+      complete: () => {
+        this.spinnerService.hide();
+      }
+    });
   }
 }

@@ -76,6 +76,7 @@ export class AuthService {
     localStorage.removeItem(LocalStorageEnum.app_user);
     localStorage.removeItem(LocalStorageEnum.Access_Token);
     localStorage.removeItem(LocalStorageEnum.Roles);
+    localStorage.removeItem(LocalStorageEnum.UserName);
   }
 
   // logout
@@ -117,7 +118,15 @@ export class AuthService {
     var decoded: any = jwt_decode(localStorage.getItem(LocalStorageEnum.Access_Token));
     console.log(decoded);
     if (decoded) {
-      this.user = JSON.parse(decoded['User']);
+      var userDTO: UserDTO = {
+        Username: decoded['UserName'],
+        Id: decoded['UserId'],
+        UserTypeId: Number(decoded['UserTypeId']),
+        Email: decoded['Email'],
+        FullName: decoded['Name'],
+        PhoneNumber: decoded['PhoneNumber'],
+      };
+      this.user = userDTO;
       localStorage.setItem(LocalStorageEnum.app_user, JSON.stringify(this.user));
       this._loggedInUser.next(this.user);
       this.PermissionsService.AddPermissions(decoded['Roles'] ? decoded['Roles'] : '');

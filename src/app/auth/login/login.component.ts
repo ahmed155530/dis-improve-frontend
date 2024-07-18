@@ -2,6 +2,7 @@ import { BaseService } from 'base/services/base.service';
 import { Component, Injector, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationController } from 'base/APIs/AuthenticationController';
+import { LocalStorageEnum } from '../../../base/enums/LocalStorageEnum.enum';
 
 @Component({
   selector: 'app-login',
@@ -56,8 +57,25 @@ export class LoginComponent extends BaseService implements OnInit {
       },
       complete: () => {
         this.spinnerService.hide();
-        this.router.navigateByUrl('/dashboard');
+        var userTypeId: number = JSON.parse(localStorage.getItem(LocalStorageEnum.app_user))['UserTypeId'];
+        this.Redirect(userTypeId);
       }
     });
+  }
+
+  Redirect(userTypeId: number) {
+    switch (userTypeId) {
+      case 1:
+        this.router.navigateByUrl('/data-entry/data-list');
+        break;
+      case 2:
+        this.router.navigateByUrl('/dashboard');
+        break;
+      case 3:
+        this.router.navigateByUrl('/dashboard');
+        break;
+      default:
+        break;
+    }
   }
 }
