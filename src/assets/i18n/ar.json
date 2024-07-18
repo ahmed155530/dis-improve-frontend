@@ -96,7 +96,10 @@
       "search": "بحث",
       "up": "لأعلى",
       "down": "لأسفل",
-      "submit": "تأكيد"
+      "submit": "تأكيد",
+      "approve": "موافقة",
+      "reject": "رفض",
+      "complete": "إكمال"
    },
    "status": {
       "activated": "مفعل",

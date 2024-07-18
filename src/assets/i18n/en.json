@@ -81,7 +81,10 @@
         "search": "Search",
         "up": "Up",
         "down": "Down",
-        "submit": "Submit"
+        "submit": "Submit",
+        "approve": "Approve",
+        "reject": "Reject",
+        "complete": "Complete"
     },
     "navbar": {
         "user": {

@@ -22,8 +22,8 @@
       <mat-form-field appearance="outline"
         class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
         <mat-label>{{'data.username' | translate}}</mat-label>
-        <input formControlName="username" matInput type="text" required>
-        <mat-error *ngIf="form.get('username').hasError('required')">
+        <input formControlName="userName" matInput type="text" required>
+        <mat-error *ngIf="form.get('userName').hasError('required')">
           {{"messages.This field is required" |translate}}
         </mat-error>
       </mat-form-field>
@@ -31,9 +31,9 @@
       <mat-form-field appearance="outline"
         class="col-lg-4 col-md-4  col-sm-12 col-xs-12">
         <mat-label>{{'data.nid' | translate}}</mat-label>
-        <input formControlName="nid" matInput type="text" required>
+        <input formControlName="iDNumber" matInput type="text" required>
         <mat-error
-          *ngIf="form.get('nid').hasError('required') && form.get('nid').touched">
+          *ngIf="form.get('iDNumber').hasError('required') && form.get('iDNumber').touched">
           {{"messages.This field is required" |translate}}
         </mat-error>
 

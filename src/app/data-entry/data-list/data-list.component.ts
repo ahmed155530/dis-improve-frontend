@@ -8,6 +8,7 @@ import { Stations } from 'base/Data/Stations';
 import { BaseService } from 'base/services/base.service';
 import { takeUntil } from 'rxjs';
 import { AddEditDataComponent } from './add-edit-data/add-edit-data.component';
+import { DataEntryController } from 'base/APIs/DataEntryController';
 
 @Component({
   selector: 'app-data-list',
@@ -28,6 +29,7 @@ export class DataListComponent extends BaseService implements OnInit, AfterConte
     'data.phoneNumber',
     'data.country',
     'data.registrationDate',
+    'data.status',
     'data.actions',
   ];
   dataSource: any = [];
@@ -44,6 +46,7 @@ export class DataListComponent extends BaseService implements OnInit, AfterConte
   }
 
   ngOnInit() {
+    this.GetAllByUserId();
     this.initForm();
   }
 
@@ -66,7 +69,7 @@ export class DataListComponent extends BaseService implements OnInit, AfterConte
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((adminDTO: any) => {
         if (adminDTO) {
-          // this.GetAllAdmins();
+          this.GetAllByUserId();
         }
       });
   }
@@ -74,5 +77,23 @@ export class DataListComponent extends BaseService implements OnInit, AfterConte
   handlePaginator(paginator: MatPaginator) {
     console.log(paginator);
     // this.GetSanitationAppUsers();
+  }
+
+  GetAllByUserId() {
+    this.spinnerService.show();
+    this.httpService.GET(`${DataEntryController.GetAllByUserId}`).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.dataSource = res.data;
+          this.spinnerService.hide();
+        }
+      },
+      error: (err: Error) => {
+        this.spinnerService.hide();
+      },
+      complete: () => {
+        this.spinnerService.hide();
+      }
+    });
   }
 }

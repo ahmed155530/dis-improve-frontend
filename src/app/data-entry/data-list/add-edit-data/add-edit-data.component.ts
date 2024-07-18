@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CompanyController } from 'base/APIs/CompanyController';
 import { CountryController } from 'base/APIs/CountryController';
+import { DataEntryController } from 'base/APIs/DataEntryController';
 import { Gender } from 'base/constants/Gender';
 import { BaseService } from 'base/services/base.service';
 import { Observable } from 'rxjs';
@@ -42,13 +43,12 @@ export class AddEditDataComponent extends BaseService implements OnInit {
     this.form = this.fb.group({
       id: new FormControl<number>(0),
       name: new FormControl<string>('', Validators.compose([Validators.required])),
-      username: new FormControl<string>('', Validators.compose([Validators.required])),
+      userName: new FormControl<string>('', Validators.compose([Validators.required])),
       companyId: new FormControl<number>(null, Validators.compose([Validators.required])),
       countryId: new FormControl<number>(null, Validators.compose([Validators.required])),
-      nid: new FormControl<string>('', Validators.compose([Validators.required])),
+      iDNumber: new FormControl<string>('', Validators.compose([Validators.required])),
       phoneNumber: new FormControl<string>('', Validators.compose([Validators.required])),
-
-      searchCountry: new FormControl<string>(''),
+      //searchCountry: new FormControl<string>(''),
     });
   }
 
@@ -57,8 +57,8 @@ export class AddEditDataComponent extends BaseService implements OnInit {
     if (this.model === 'create') {
       data = {
         name: this.form?.value['name'],
-        username: this.form?.value['username'],
-        nid: this.form?.value['nid'],
+        userName: this.form?.value['userName'],
+        iDNumber: this.form?.value['iDNumber'],
         companyId: this.form?.value['companyId'],
         countryId: this.form?.value['countryId'],
         phoneNumber: this.form?.value['phoneNumber'],
@@ -94,18 +94,18 @@ export class AddEditDataComponent extends BaseService implements OnInit {
 
   Create(data: any) {
     this.spinnerService.show();
-    // this.httpService.POST(AdminQualityControlUserController.AddQualityControlAppUser, data).subscribe({
-    //   next: (res) => {
-    //     if (res.isSuccess) {
-    //       this.spinnerService.hide();
-    //       this.swalService.alertWithSuccess(res.message ?? '');
-    //       this.dialogRef.close(true);
-    //     }
-    //     else
-    //       this.swalService.alertWithError(res.message ?? '');
-    //     this.spinnerService.hide();
-    //   }, error: (error: Error) => this.spinnerService.hide()
-    // });
+    this.httpService.POST(DataEntryController.AddDataEntry, data).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.spinnerService.hide();
+          this.swalService.alertWithSuccess(res.message ?? '');
+          this.dialogRef.close(true);
+        }
+        else
+          this.swalService.alertWithError(res.message ?? '');
+        this.spinnerService.hide();
+      }, error: (error: Error) => this.spinnerService.hide()
+    });
   }
 
   Update(data: any) {
