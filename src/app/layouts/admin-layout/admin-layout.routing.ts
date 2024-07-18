@@ -7,6 +7,7 @@ import { IconsComponent } from '../../icons/icons.component';
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'admin', loadChildren: () => import('../../admin/admin.module').then(m => m.AdminModule) },
+    { path: 'company-user', loadChildren: () => import('../../company-user/company-user.module').then(m => m.CompanyUserModule) },
     { path: 'data-entry', loadChildren: () => import('../../data-entry/data-entry.module').then(m => m.DataEntryModule) },
     { path: 'errors', loadChildren: () => import('../../error/error.module').then(m => m.ErrorModule) },
     { path: '**', loadChildren: () => import('../../error/error.module').then(m => m.ErrorModule) },

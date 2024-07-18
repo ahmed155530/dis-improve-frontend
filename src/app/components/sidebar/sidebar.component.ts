@@ -19,6 +19,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/admin/company-user-list', title: 'sidebar.companyUsers', icon: 'person_apron', class: '', roles: [AuthRole.AdminUser], show: false },
   { path: '/admin/data-entry-list', title: 'sidebar.dataEntry', icon: 'database', class: '', roles: [AuthRole.AdminUser], show: false },
   { path: '/data-entry/data-list', title: 'sidebar.data', icon: 'description', class: '', roles: [AuthRole.DataEntryUser], show: false },
+  { path: '/company-user/data-list', title: 'sidebar.data', icon: 'description', class: '', roles: [AuthRole.CompanyUser], show: false },
 ];
 
 @Component({

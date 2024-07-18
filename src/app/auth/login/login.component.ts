@@ -69,7 +69,7 @@ export class LoginComponent extends BaseService implements OnInit {
         this.router.navigateByUrl('/data-entry/data-list');
         break;
       case 2:
-        this.router.navigateByUrl('/dashboard');
+        this.router.navigateByUrl('/company-user/data-list');
         break;
       case 3:
         this.router.navigateByUrl('/dashboard');
