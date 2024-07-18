@@ -8,6 +8,7 @@ import { BaseService } from 'base/services/base.service';
 import { takeUntil } from 'rxjs';
 import { AddEditAdminComponent } from '../admin-list/add-edit-admin/add-edit-admin.component';
 import { AddEditCompanyUserComponent } from './add-edit-company-user/add-edit-company-user.component';
+import { UserController } from 'base/APIs/UserController';
 
 @Component({
   selector: 'app-company-user-list',
@@ -22,8 +23,11 @@ export class CompanyUserListComponent extends BaseService implements OnInit, Aft
   displayedColumns: string[] = [
     'companyUsers.id',
     'companyUsers.name',
+    'companyUsers.email',
+    'companyUsers.nid',
     'companyUsers.phoneNumber',
     'companyUsers.company',
+    'companyUsers.country',
     'companyUsers.registrationDate',
     'companyUsers.actions',
   ];
@@ -41,6 +45,7 @@ export class CompanyUserListComponent extends BaseService implements OnInit, Aft
   }
 
   ngOnInit() {
+    this.GetAllCompanyUsers();
     this.initForm();
   }
 
@@ -63,13 +68,31 @@ export class CompanyUserListComponent extends BaseService implements OnInit, Aft
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((adminDTO: any) => {
         if (adminDTO) {
-          // this.GetAllComapanyUsers();
+          this.GetAllCompanyUsers();
         }
       });
   }
 
   handlePaginator(paginator: MatPaginator) {
     console.log(paginator);
-    // this.GetAllComapanyUsers();
+    this.GetAllCompanyUsers();
+  }
+
+  GetAllCompanyUsers() {
+    this.spinnerService.show();
+    this.httpService.GET(`${UserController.GetAllUsers}/${2}`).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.dataSource = res.data;
+          this.spinnerService.hide();
+        }
+      },
+      error: (err: Error) => {
+        this.spinnerService.hide();
+      },
+      complete: () => {
+        this.spinnerService.hide();
+      }
+    });
   }
 }

@@ -41,16 +41,22 @@
                       {{data.name}}
                     </td>
                     <td>
+                      {{data.email}}
+                    </td>
+                    <td>
+                      {{data.idNumber}}
+                    </td>
+                    <td>
                       {{data.phoneNumber}}
                     </td>
 
                     <td>
-                      {{data.creationDate|date : 'longDate':'':'ar-EG' }}
+                      {{data.registerationDate|date : 'longDate':'':'ar-EG' }}
                     </td>
                     <td class="actions row" style="max-width: 110px;">
                       <div class="col-6">
                         <button mat-mini-fab color="primary"
-                          *ngIf="!data.status" (click)="Update(data)"
+                          (click)="Update(data)"
                           matTooltip="{{'buttons.edit'|translate}}">
                           <span
                             class="material-symbols-outlined">edit</span>
@@ -58,7 +64,7 @@
                       </div>
 
                       <div class="col-6">
-                        <button mat-mini-fab color="warn" *ngIf="!data.status"
+                        <button mat-mini-fab color="warn"
                           (click)="deleteObject(data)"
                           matTooltip="{{'buttons.delete'|translate}}">
                           <span

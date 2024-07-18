@@ -7,6 +7,7 @@ import { Stations } from 'base/Data/Stations';
 import { BaseService } from 'base/services/base.service';
 import { AddEditAdminComponent } from './add-edit-admin/add-edit-admin.component';
 import { takeUntil } from 'rxjs';
+import { UserController } from 'base/APIs/UserController';
 
 @Component({
   selector: 'app-admin-list',
@@ -21,6 +22,8 @@ export class AdminListComponent extends BaseService implements OnInit, AfterCont
   displayedColumns: string[] = [
     'admins.id',
     'admins.name',
+    'admins.email',
+    'admins.nid',
     'admins.phoneNumber',
     'admins.registrationDate',
     'admins.actions',
@@ -40,6 +43,7 @@ export class AdminListComponent extends BaseService implements OnInit, AfterCont
 
   ngOnInit() {
     this.initForm();
+    this.GetAllAdmins();
   }
 
   initForm() {
@@ -61,13 +65,66 @@ export class AdminListComponent extends BaseService implements OnInit, AfterCont
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((adminDTO: any) => {
         if (adminDTO) {
-          // this.GetAllAdmins();
+          this.GetAllAdmins();
         }
       });
   }
 
+  Update(data: any) {
+    this.dialog.open(AddEditAdminComponent, { data: data })
+      .afterClosed()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((adminDTO: any) => {
+        if (adminDTO) {
+          this.GetAllAdmins();
+        }
+      });
+  }
+
+  submitDelete(adminDTO: any) {
+    this.swalService.alertDelete(() => {
+      this.deleteAdmin(adminDTO);
+    });
+  }
+
+  deleteAdmin(adminDTO: any) {
+    console.log(adminDTO);
+    this.spinnerService.show();
+    this.httpService.DELETE(`${UserController.DeleteUser}/${adminDTO.id}`).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.GetAllAdmins();
+        }
+      },
+      error: (err: Error) => {
+        this.spinnerService.hide();
+      },
+      complete: () => {
+        this.spinnerService.hide();
+      }
+    });
+  }
+
   handlePaginator(paginator: MatPaginator) {
     console.log(paginator);
-    // this.GetSanitationAppUsers();
+    this.GetAllAdmins();
+  }
+
+  GetAllAdmins() {
+    this.spinnerService.show();
+    this.httpService.GET(`${UserController.GetAllUsers}/${3}`).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.dataSource = res.data;
+          this.spinnerService.hide();
+        }
+      },
+      error: (err: Error) => {
+        this.spinnerService.hide();
+      },
+      complete: () => {
+        this.spinnerService.hide();
+      }
+    });
   }
 }

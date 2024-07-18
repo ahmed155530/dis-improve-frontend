@@ -1,6 +1,8 @@
 import { Component, Inject, Injector, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { CountryController } from 'base/APIs/CountryController';
+import { UserController } from 'base/APIs/UserController';
 import { Gender } from 'base/constants/Gender';
 import { BaseService } from 'base/services/base.service';
 
@@ -38,8 +40,11 @@ export class AddEditAdminComponent extends BaseService implements OnInit {
     this.form = this.fb.group({
       id: new FormControl<number>(0),
       name: new FormControl<string>('', Validators.compose([Validators.required])),
-      username: new FormControl<string>('', Validators.compose([Validators.required])),
-      nid: new FormControl<string>('', Validators.compose([Validators.required])),
+      userName: new FormControl<string>('', Validators.compose([Validators.required])),
+      idNumber: new FormControl<string>('', Validators.compose([Validators.required])),
+      email: new FormControl<string>('', Validators.compose([Validators.required])),
+      phoneNumber: new FormControl<string>('', Validators.compose([Validators.required])),
+      countryId: new FormControl<number>(null, Validators.compose([Validators.required])),
     });
   }
 
@@ -48,8 +53,12 @@ export class AddEditAdminComponent extends BaseService implements OnInit {
     if (this.model === 'create') {
       data = {
         name: this.form?.value['name'],
-        username: this.form?.value['username'],
-        nid: this.form?.value['nid'],
+        userName: this.form?.value['userName'],
+        idNumber: this.form?.value['idNumber'],
+        email: this.form?.value['email'],
+        countryId: this.form?.value['countryId'],
+        userTypeId: 3,
+        password: '123456',
       };
       this.Create(data);
     }
@@ -57,8 +66,12 @@ export class AddEditAdminComponent extends BaseService implements OnInit {
       data = {
         id: this.form?.value['id'],
         name: this.form?.value['name'],
-        username: this.form?.value['username'],
-        nid: this.form?.value['nid'],
+        userName: this.form?.value['userName'],
+        idNumber: this.form?.value['idNumber'],
+        email: this.form?.value['email'],
+        countryId: this.form?.value['countryId'],
+        phoneNumber: this.form?.value['phoneNumber'],
+        userTypeId: 3
       };
       this.Update(data);
     }
@@ -67,43 +80,46 @@ export class AddEditAdminComponent extends BaseService implements OnInit {
   setFormData() {
     this.form.patchValue({
       id: this.defaults['id'],
-      name: this.form?.value['name'],
-      username: this.form?.value['username'],
-      nid: this.form?.value['nid'],
+      name: this.defaults['name'],
+      userName: this.defaults['userName'],
+      idNumber: this.defaults['idNumber'],
+      email: this.defaults['email'],
+      countryId: this.defaults['countryId'],
+      phoneNumber: this.defaults['phoneNumber'],
     });
     this._ref.detectChanges();
   }
 
   Create(data: any) {
     this.spinnerService.show();
-    // this.httpService.POST(AdminQualityControlUserController.AddQualityControlAppUser, data).subscribe({
-    //   next: (res) => {
-    //     if (res.isSuccess) {
-    //       this.spinnerService.hide();
-    //       this.swalService.alertWithSuccess(res.message ?? '');
-    //       this.dialogRef.close(true);
-    //     }
-    //     else
-    //       this.swalService.alertWithError(res.message ?? '');
-    //     this.spinnerService.hide();
-    //   }, error: (error: Error) => this.spinnerService.hide()
-    // });
+    this.httpService.POST(UserController.RegisterUser, data).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.spinnerService.hide();
+          this.swalService.alertWithSuccess(res.message ?? '');
+          this.dialogRef.close(true);
+        }
+        else
+          this.swalService.alertWithError(res.message ?? '');
+        this.spinnerService.hide();
+      }, error: (error: Error) => this.spinnerService.hide()
+    });
   }
 
   Update(data: any) {
-    // this.spinnerService.show();
-    // this.httpService.PUT(AdminQualityControlUserController.UpdateQualityControlAppUser, data).subscribe({
-    //   next: (res) => {
-    //     if (res.isSuccess) {
-    //       this.spinnerService.hide();
-    //       this.swalService.alertWithSuccess(res.message ?? '');
-    //       this.dialogRef.close(true);
-    //     }
-    //     else
-    //       this.swalService.alertWithError(res.message ?? '');
-    //     this.spinnerService.hide();
-    //   }, error: (error: Error) => this.spinnerService.hide()
-    // });
+    this.spinnerService.show();
+    this.httpService.PUT(UserController.UpdateUser, data).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.spinnerService.hide();
+          this.swalService.alertWithSuccess(res.message ?? '');
+          this.dialogRef.close(true);
+        }
+        else
+          this.swalService.alertWithError(res.message ?? '');
+        this.spinnerService.hide();
+      }, error: (error: Error) => this.spinnerService.hide()
+    });
   }
 
   isCreateMode() {
@@ -115,25 +131,25 @@ export class AddEditAdminComponent extends BaseService implements OnInit {
   }
 
   getLookups() {
-    this.GetAllStations();
+    this.GetAllCountries();
   }
 
-  GetAllStations() {
-    // this.spinnerService.show();
-    // this.httpService.GET(LookupsController.GetAllStations).subscribe({
-    //   next: (res) => {
-    //     if (res.isSuccess) {
-    //       this.stations = res.data;
-    //       this.spinnerService.hide();
-    //     }
-    //   },
-    //   error: (err: Error) => {
-    //     this.spinnerService.hide();
-    //   },
-    //   complete: () => {
-    //     this.spinnerService.hide();
-    //   }
-    // });
+  GetAllCountries() {
+    this.spinnerService.show();
+    this.httpService.GET(CountryController.GetAllCountries).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.countries = res.data;
+          this.spinnerService.hide();
+        }
+      },
+      error: (err: Error) => {
+        this.spinnerService.hide();
+      },
+      complete: () => {
+        this.spinnerService.hide();
+      }
+    });
   }
 
 }

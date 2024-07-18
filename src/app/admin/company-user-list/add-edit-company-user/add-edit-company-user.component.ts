@@ -2,6 +2,9 @@ import { Component, Inject, Injector, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AddEditAdminComponent } from 'app/admin/admin-list/add-edit-admin/add-edit-admin.component';
+import { CompanyController } from 'base/APIs/CompanyController';
+import { CountryController } from 'base/APIs/CountryController';
+import { UserController } from 'base/APIs/UserController';
 import { Gender } from 'base/constants/Gender';
 import { BaseService } from 'base/services/base.service';
 
@@ -10,10 +13,11 @@ import { BaseService } from 'base/services/base.service';
   templateUrl: './add-edit-company-user.component.html',
   styleUrls: ['./add-edit-company-user.component.scss']
 })
-export class AddEditCompanyUserComponent  extends BaseService implements OnInit {
+export class AddEditCompanyUserComponent extends BaseService implements OnInit {
   form: FormGroup;
   Genders = Gender;
   countries: any[] = [];
+  companies: any[] = [];
   constructor(
     @Inject(MAT_DIALOG_DATA) public defaults: any,
     private dialogRef: MatDialogRef<AddEditAdminComponent>,
@@ -39,7 +43,11 @@ export class AddEditCompanyUserComponent  extends BaseService implements OnInit 
       id: new FormControl<number>(0),
       name: new FormControl<string>('', Validators.compose([Validators.required])),
       username: new FormControl<string>('', Validators.compose([Validators.required])),
-      nid: new FormControl<string>('', Validators.compose([Validators.required])),
+      idNumber: new FormControl<string>('', Validators.compose([Validators.required])),
+      email: new FormControl<string>('', Validators.compose([Validators.required])),
+      phoneNumber: new FormControl<string>('', Validators.compose([Validators.required])),
+      countryId: new FormControl<number>(null, Validators.compose([Validators.required])),
+      companyId: new FormControl<number>(null, Validators.compose([Validators.required])),
     });
   }
 
@@ -49,7 +57,13 @@ export class AddEditCompanyUserComponent  extends BaseService implements OnInit 
       data = {
         name: this.form?.value['name'],
         username: this.form?.value['username'],
-        nid: this.form?.value['nid'],
+        idNumber: this.form?.value['idNumber'],
+        email: this.form?.value['email'],
+        countryId: this.form?.value['countryId'],
+        companyId: this.form?.value['companyId'],
+        phoneNumber: this.form?.value['phoneNumber'],
+        userTypeId: 2,
+        password: '123456',
       };
       this.Create(data);
     }
@@ -58,7 +72,12 @@ export class AddEditCompanyUserComponent  extends BaseService implements OnInit 
         id: this.form?.value['id'],
         name: this.form?.value['name'],
         username: this.form?.value['username'],
-        nid: this.form?.value['nid'],
+        idNumber: this.form?.value['idNumber'],
+        email: this.form?.value['email'],
+        phoneNumber: this.form?.value['phoneNumber'],
+        countryId: this.form?.value['countryId'],
+        companyId: this.form?.value['companyId'],
+        userTypeId: 3
       };
       this.Update(data);
     }
@@ -69,41 +88,45 @@ export class AddEditCompanyUserComponent  extends BaseService implements OnInit 
       id: this.defaults['id'],
       name: this.defaults['name'],
       username: this.defaults['username'],
-      nid: this.defaults['nid'],
+      idNumber: this.defaults['idNumber'],
+      email: this.defaults['email'],
+      countryId: this.defaults['countryId'],
+      companyId: this.defaults['companyId'],
+      phoneNumber: this.defaults['phoneNumber'],
     });
     this._ref.detectChanges();
   }
 
   Create(data: any) {
     this.spinnerService.show();
-    // this.httpService.POST(AdminQualityControlUserController.AddQualityControlAppUser, data).subscribe({
-    //   next: (res) => {
-    //     if (res.isSuccess) {
-    //       this.spinnerService.hide();
-    //       this.swalService.alertWithSuccess(res.message ?? '');
-    //       this.dialogRef.close(true);
-    //     }
-    //     else
-    //       this.swalService.alertWithError(res.message ?? '');
-    //     this.spinnerService.hide();
-    //   }, error: (error: Error) => this.spinnerService.hide()
-    // });
+    this.httpService.POST(UserController.RegisterUser, data).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.spinnerService.hide();
+          this.swalService.alertWithSuccess(res.message ?? '');
+          this.dialogRef.close(true);
+        }
+        else
+          this.swalService.alertWithError(res.message ?? '');
+        this.spinnerService.hide();
+      }, error: (error: Error) => this.spinnerService.hide()
+    });
   }
 
   Update(data: any) {
-    // this.spinnerService.show();
-    // this.httpService.PUT(AdminQualityControlUserController.UpdateQualityControlAppUser, data).subscribe({
-    //   next: (res) => {
-    //     if (res.isSuccess) {
-    //       this.spinnerService.hide();
-    //       this.swalService.alertWithSuccess(res.message ?? '');
-    //       this.dialogRef.close(true);
-    //     }
-    //     else
-    //       this.swalService.alertWithError(res.message ?? '');
-    //     this.spinnerService.hide();
-    //   }, error: (error: Error) => this.spinnerService.hide()
-    // });
+    this.spinnerService.show();
+    this.httpService.PUT(UserController.UpdateUser, data).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.spinnerService.hide();
+          this.swalService.alertWithSuccess(res.message ?? '');
+          this.dialogRef.close(true);
+        }
+        else
+          this.swalService.alertWithError(res.message ?? '');
+        this.spinnerService.hide();
+      }, error: (error: Error) => this.spinnerService.hide()
+    });
   }
 
   isCreateMode() {
@@ -115,25 +138,44 @@ export class AddEditCompanyUserComponent  extends BaseService implements OnInit 
   }
 
   getLookups() {
-    this.GetAllStations();
+    this.GetAllCountries();
+    this.GetAllCompanies();
   }
 
-  GetAllStations() {
-    // this.spinnerService.show();
-    // this.httpService.GET(LookupsController.GetAllStations).subscribe({
-    //   next: (res) => {
-    //     if (res.isSuccess) {
-    //       this.stations = res.data;
-    //       this.spinnerService.hide();
-    //     }
-    //   },
-    //   error: (err: Error) => {
-    //     this.spinnerService.hide();
-    //   },
-    //   complete: () => {
-    //     this.spinnerService.hide();
-    //   }
-    // });
+  GetAllCountries() {
+    this.spinnerService.show();
+    this.httpService.GET(CountryController.GetAllCountries).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.countries = res.data;
+          this.spinnerService.hide();
+        }
+      },
+      error: (err: Error) => {
+        this.spinnerService.hide();
+      },
+      complete: () => {
+        this.spinnerService.hide();
+      }
+    });
+  }
+
+  GetAllCompanies() {
+    this.spinnerService.show();
+    this.httpService.GET(CompanyController.GetAllCompanies).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.companies = res.data;
+          this.spinnerService.hide();
+        }
+      },
+      error: (err: Error) => {
+        this.spinnerService.hide();
+      },
+      complete: () => {
+        this.spinnerService.hide();
+      }
+    });
   }
 
 }

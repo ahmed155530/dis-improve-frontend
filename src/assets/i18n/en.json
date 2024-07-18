@@ -36,7 +36,12 @@
         "phoneNumber": "Phone Number",
         "company": "Company",
         "registrationDate": "Registration Date",
-        "actions": "Actions"
+        "actions": "Actions",
+        "companyName": "Company",
+        "username": "Username",
+        "country": "Country",
+        "status": "Status",
+        "AddNewDataRecord": "Add new data"
     },
     "dataEntries": {
         "id": "ID",
