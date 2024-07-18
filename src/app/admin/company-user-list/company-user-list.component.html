@@ -7,7 +7,7 @@
           <div class="card-header card-header-info row">
             <div class="col-6 card-title">
               <h4 class="card-title">
-                {{'sidebar.admins'|translate}}
+                {{'sidebar.companyUsers'|translate}}
               </h4>
             </div>
 
@@ -40,22 +40,13 @@
                       {{data.name}}
                     </td>
                     <td>
-                      {{data.companyName}}
-                    </td>
-                    <td>
-                      {{data.nid}}
-                    </td>
-                    <td>
-                      {{data.username}}
-                    </td>
-                    <td>
                       {{data.phoneNumber}}
                     </td>
                     <td>
-                      {{data.nationality}}
+                      {{data.company}}
                     </td>
                     <td>
-                      {{data.registrationDate|date : 'longDate':'':'ar-EG' }}
+                      {{data.creationDate|date : 'longDate':'':'ar-EG' }}
                     </td>
                     <td class="actions row" style="max-width: 110px;">
                       <div class="col-6">

@@ -6,6 +6,7 @@
       "dashboard": "لوحة التحكم",
       "admins": "مسؤولي التحكم",
       "companies": "الشركات",
+      "companyUsers": "موظفي الشركات",
       "dataEntry": "مدخلي البيانات",
       "data": "البيانات"
    },
@@ -28,6 +29,17 @@
       "name": "الإسم",
       "phoneNumber": "رقم المحمول",
       "registrationDate": "تاريخ التسجيل",
+      "actions": "الإجراءات"
+   },
+   "companyUsers": {
+      "id": "م",
+      "name": "الإسم",
+      "username": "إسم المستخدم",
+      "nid": "رقم الهوية / رقم الباسبور",
+      "phoneNumber": "رقم التليفون",
+      "company": "الشركة",
+      "registrationDate": "تاريخ التسجيل",
+      "status": "الحالة",
       "actions": "الإجراءات"
    },
    "dataEntries": {
@@ -55,12 +67,17 @@
       "email": "البريد الإليكتروني",
       "password": "كلمة المرور",
       "status": "الحالة",
-      "registrationDate": "تاريخ التسجيل"
+      "registrationDate": "تاريخ التسجيل",
+      "AddNewDataRecord": "إضافة جديد"
    },
    "login": {
       "phoneNumber": "رقم التليفون",
       "username": "إسم المستخدم",
       "password": "كلمة المرور"
+   },
+   "changePassword": {
+      "currentPassword": "كلمة المرور الحالية",
+      "newPassword": "كلمة المرور الجديدة"
    },
    "buttons": {
       "add": "إضافة",
@@ -71,7 +88,8 @@
       "update": "تعديل",
       "search": "بحث",
       "up": "لأعلى",
-      "down": "لأسفل"
+      "down": "لأسفل",
+      "submit": "تأكيد"
    },
    "status": {
       "activated": "مفعل",
@@ -112,6 +130,7 @@
    },
    "notExist": "لا يوجد",
    "Login": "تسجيل دخول",
+   "ChangePassword": "تغيير كلمة المرور",
    "username": "إسم المستخدم",
    "password": "كلمة المرور",
    "Clear": "مسح",

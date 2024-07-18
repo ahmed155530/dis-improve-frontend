@@ -1,30 +1,26 @@
 import { Component, Inject, Injector, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { CompanyController } from 'base/APIs/CompanyController';
-import { CountryController } from 'base/APIs/CountryController';
+import { AddEditAdminComponent } from 'app/admin/admin-list/add-edit-admin/add-edit-admin.component';
 import { Gender } from 'base/constants/Gender';
 import { BaseService } from 'base/services/base.service';
-import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-add-edit-data',
-  templateUrl: './add-edit-data.component.html',
-  styleUrls: ['./add-edit-data.component.scss']
+  selector: 'app-add-edit-company-user',
+  templateUrl: './add-edit-company-user.component.html',
+  styleUrls: ['./add-edit-company-user.component.scss']
 })
-export class AddEditDataComponent extends BaseService implements OnInit {
+export class AddEditCompanyUserComponent  extends BaseService implements OnInit {
   form: FormGroup;
+  Genders = Gender;
   countries: any[] = [];
-  selectedCountries: any[] = [];
-  companies: any[] = [];
   constructor(
     @Inject(MAT_DIALOG_DATA) public defaults: any,
-    private dialogRef: MatDialogRef<AddEditDataComponent>,
+    private dialogRef: MatDialogRef<AddEditAdminComponent>,
     public override injector: Injector,
   ) {
     super(injector);
   }
-
 
   ngOnInit() {
     this.initForm();
@@ -43,12 +39,7 @@ export class AddEditDataComponent extends BaseService implements OnInit {
       id: new FormControl<number>(0),
       name: new FormControl<string>('', Validators.compose([Validators.required])),
       username: new FormControl<string>('', Validators.compose([Validators.required])),
-      companyId: new FormControl<number>(null, Validators.compose([Validators.required])),
-      countryId: new FormControl<number>(null, Validators.compose([Validators.required])),
       nid: new FormControl<string>('', Validators.compose([Validators.required])),
-      phoneNumber: new FormControl<string>('', Validators.compose([Validators.required])),
-
-      searchCountry: new FormControl<string>(''),
     });
   }
 
@@ -59,9 +50,6 @@ export class AddEditDataComponent extends BaseService implements OnInit {
         name: this.form?.value['name'],
         username: this.form?.value['username'],
         nid: this.form?.value['nid'],
-        companyId: this.form?.value['companyId'],
-        countryId: this.form?.value['countryId'],
-        phoneNumber: this.form?.value['phoneNumber'],
       };
       this.Create(data);
     }
@@ -71,9 +59,6 @@ export class AddEditDataComponent extends BaseService implements OnInit {
         name: this.form?.value['name'],
         username: this.form?.value['username'],
         nid: this.form?.value['nid'],
-        companyId: this.form?.value['companyId'],
-        countryId: this.form?.value['countryId'],
-        phoneNumber: this.form?.value['phoneNumber'],
       };
       this.Update(data);
     }
@@ -82,12 +67,9 @@ export class AddEditDataComponent extends BaseService implements OnInit {
   setFormData() {
     this.form.patchValue({
       id: this.defaults['id'],
-      name: this.form?.value['name'],
-      username: this.form?.value['username'],
-      nid: this.form?.value['nid'],
-      companyId: this.form?.value['companyId'],
-      countryId: this.form?.value['countryId'],
-      phoneNumber: this.form?.value['phoneNumber'],
+      name: this.defaults['name'],
+      username: this.defaults['username'],
+      nid: this.defaults['nid'],
     });
     this._ref.detectChanges();
   }
@@ -133,64 +115,25 @@ export class AddEditDataComponent extends BaseService implements OnInit {
   }
 
   getLookups() {
-    this.GetAllCountries();
-    this.GetAllCompanies();
+    this.GetAllStations();
   }
 
-  GetAllCountries() {
-    this.spinnerService.show();
-    this.httpService.GET(CountryController.GetAllCountries).subscribe({
-      next: (res) => {
-        if (res.isSuccess) {
-          this.countries = res.data;
-          this.selectedCountries = res.data;
-          this.spinnerService.hide();
-        }
-      },
-      error: (err: Error) => {
-        this.spinnerService.hide();
-      },
-      complete: () => {
-        this.spinnerService.hide();
-      }
-    });
-  }
-
-  GetAllCompanies() {
-    this.spinnerService.show();
-    this.httpService.GET(CompanyController.GetAllCompanies).subscribe({
-      next: (res) => {
-        if (res.isSuccess) {
-          this.companies = res.data;
-          this.spinnerService.hide();
-        }
-      },
-      error: (err: Error) => {
-        this.spinnerService.hide();
-      },
-      complete: () => {
-        this.spinnerService.hide();
-      }
-    });
-  }
-
-
-  searchCountry(event: any) {
-    console.log(event);
-    console.log(event.key);
-    this.form?.patchValue({ searchCountry: this.form?.value.searchCountry + event.key });
-    console.log(this.form?.value.searchCountry);
-    this.selectedCountries = [];
-    if (this.form?.value.searchCountry !== '') {
-      this.countries.forEach((element: any) => {
-        if (element.name.includes(this.form?.value.searchCountry)) {
-          this.selectedCountries.push(element);
-        }
-      });
-    }
-    if (this.form.value.searchCountry === '') {
-      this.selectedCountries = this.countries;
-    }
+  GetAllStations() {
+    // this.spinnerService.show();
+    // this.httpService.GET(LookupsController.GetAllStations).subscribe({
+    //   next: (res) => {
+    //     if (res.isSuccess) {
+    //       this.stations = res.data;
+    //       this.spinnerService.hide();
+    //     }
+    //   },
+    //   error: (err: Error) => {
+    //     this.spinnerService.hide();
+    //   },
+    //   complete: () => {
+    //     this.spinnerService.hide();
+    //   }
+    // });
   }
 
 }

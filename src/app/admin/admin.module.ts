@@ -24,6 +24,8 @@ import { CompanyListComponent } from './company-list/company-list.component';
 import { AddEditCompanyComponent } from './company-list/add-edit-company/add-edit-company.component';
 import { DataEntryListComponent } from './data-entry-list/data-entry-list.component';
 import { AddEditDataEntryComponent } from './data-entry-list/add-edit-data-entry/add-edit-data-entry.component';
+import { CompanyUserListComponent } from './company-user-list/company-user-list.component';
+import { AddEditCompanyUserComponent } from './company-user-list/add-edit-company-user/add-edit-company-user.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { AddEditDataEntryComponent } from './data-entry-list/add-edit-data-entry
     CompanyListComponent,
     AddEditCompanyComponent,
     DataEntryListComponent,
-    AddEditDataEntryComponent
+    AddEditDataEntryComponent,
+    CompanyUserListComponent,
+    AddEditCompanyUserComponent
   ],
   imports: [
     CommonModule,

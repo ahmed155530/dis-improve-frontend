@@ -8,6 +8,8 @@ import { BaseService } from 'base/services/base.service';
 import { takeUntil } from 'rxjs';
 import { AddEditAdminComponent } from '../admin-list/add-edit-admin/add-edit-admin.component';
 import { AddEditCompanyComponent } from './add-edit-company/add-edit-company.component';
+import { CompanyController } from 'base/APIs/CompanyController';
+import { QueryParamDTO } from 'base/models/shared/QueryParamDTO';
 
 @Component({
   selector: 'app-company-list',
@@ -40,6 +42,7 @@ export class CompanyListComponent extends BaseService implements OnInit, AfterCo
   }
 
   ngOnInit() {
+    this.GetAllCompanies();
     this.initForm();
   }
 
@@ -56,19 +59,74 @@ export class CompanyListComponent extends BaseService implements OnInit, AfterCo
     // });
   }
 
+  GetAllCompanies() {
+    this.spinnerService.show();
+    this.httpService.GET(CompanyController.GetAllCompanies).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.dataSource = res.data;
+          this.spinnerService.hide();
+        }
+      },
+      error: (err: Error) => {
+        this.spinnerService.hide();
+      },
+      complete: () => {
+        this.spinnerService.hide();
+      }
+    });
+  }
+
   createObject() {
     this.dialog.open(AddEditCompanyComponent)
       .afterClosed()
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((companyDTO: any) => {
         if (companyDTO) {
-          // this.GetAllCompanies();
+          this.GetAllCompanies();
         }
       });
   }
 
+  updateObject(data: any) {
+    console.log(data);
+    this.dialog.open(AddEditCompanyComponent, { data: data })
+      .afterClosed()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((companyDTO: any) => {
+        if (companyDTO) {
+          this.GetAllCompanies();
+        }
+      });
+  }
+
+  submitDelete(companyDTO: any) {
+    this.swalService.alertDelete(() => {
+      this.deleteCompany(companyDTO);
+    });
+  }
+
+  deleteCompany(company: any) {
+    console.log(company);
+    this.spinnerService.show();
+    this.httpService.DELETE(`${CompanyController.DeleteCompany}/${company.id}`).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.GetAllCompanies();
+        }
+      },
+      error: (err: Error) => {
+        this.spinnerService.hide();
+      },
+      complete: () => {
+        this.spinnerService.hide();
+      }
+    });
+  }
+
+
   handlePaginator(paginator: MatPaginator) {
     console.log(paginator);
-    // this.GetAllCompanies();
+    this.GetAllCompanies();
   }
 }

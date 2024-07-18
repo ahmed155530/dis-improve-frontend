@@ -20,6 +20,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxTranslateModule } from 'base/modules/ngx-translate.module';
 import { AddEditDataComponent } from './data-list/add-edit-data/add-edit-data.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { AddEditDataComponent } from './data-list/add-edit-data/add-edit-data.co
     MatRadioModule,
     NgxTranslateModule,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatAutocompleteModule
   ]
 })
 export class DataEntryModule { }

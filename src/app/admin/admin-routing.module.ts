@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminListComponent } from './admin-list/admin-list.component';
 import { CompanyListComponent } from './company-list/company-list.component';
 import { DataEntryListComponent } from './data-entry-list/data-entry-list.component';
+import { CompanyUserListComponent } from './company-user-list/company-user-list.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'company-list',
     component: CompanyListComponent
+  },
+  {
+    path: 'company-user-list',
+    component: CompanyUserListComponent
   },
   {
     path: 'data-entry-list',

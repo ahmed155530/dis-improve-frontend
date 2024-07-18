@@ -1,6 +1,7 @@
 <form [formGroup]="form" style="min-width: 600px;"
   [dir]="translationService.dir$|async">
   <div fxLayout="row" fxLayoutAlign="end center" mat-dialog-title>
+    <!-- <mat-label style="float: inline-start;">{{'data.AddNewDataRecord'|translate}}</mat-label> -->
     <button class="text-secondary" mat-dialog-close mat-icon-button
       type="button">
       <mat-icon>close</mat-icon>
@@ -42,39 +43,46 @@
 
     <div class="row">
       <mat-form-field appearance="outline"
-      class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-      <mat-label>{{'data.phoneNumber' | translate}}</mat-label>
-      <input formControlName="phoneNumber" matInput type="text" required>
-      <mat-error *ngIf="form.get('phoneNumber').hasError('required')">
-        {{"messages.This field is required" |translate}}
-      </mat-error>
-    </mat-form-field>
+        class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <mat-label>{{'data.phoneNumber' | translate}}</mat-label>
+        <input formControlName="phoneNumber" matInput type="text" required>
+        <mat-error *ngIf="form.get('phoneNumber').hasError('required')">
+          {{"messages.This field is required" |translate}}
+        </mat-error>
+      </mat-form-field>
 
-    <mat-form-field appearance="outline" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-      <mat-label>{{'data.companyName'|translate}}</mat-label>
-      <mat-select formControlName="companyId" required>
-        <mat-option *ngFor="let company of companies" [value]="company.id" required>
-          {{company.name}}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="form.get('companyId').hasError('required') && form.get('companyId').touched">
-        {{"messages.This field is required" |translate}}
-      </mat-error>
-    </mat-form-field>
+      <mat-form-field appearance="outline"
+        class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <mat-label>{{'data.companyName'|translate}}</mat-label>
+        <mat-select formControlName="companyId" required>
+          <mat-option *ngFor="let company of companies" [value]="company.id"
+            required>
+            {{company.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="form.get('companyId').hasError('required') && form.get('companyId').touched">
+          {{"messages.This field is required" |translate}}
+        </mat-error>
+      </mat-form-field>
 
-    <mat-form-field appearance="outline" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-      <mat-label>{{'data.country'|translate}}</mat-label>
-      <mat-select formControlName="countryId" required>
-        <mat-option *ngFor="let country of countries" [value]="country.id" required>
-          {{country.name}}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="form.get('countryId').hasError('required') && form.get('countryId').touched">
-        {{"messages.This field is required" |translate}}
-      </mat-error>
-    </mat-form-field>
+      <mat-form-field appearance="outline"
+        class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <mat-label>{{'data.country'|translate}}</mat-label>
+        <mat-select formControlName="countryId" required>
+          <!-- <input matInput type="text" (keydown)="searchCountry($event)"> -->
+          <mat-option *ngFor="let country of selectedCountries"
+            [value]="country.id"
+            required>
+            {{country.name}}
+          </mat-option>
+        </mat-select>
 
-
+        <mat-error
+          *ngIf="form.get('countryId').hasError('required') && form.get('countryId').touched">
+          {{"messages.This field is required" |translate}}
+        </mat-error>
+      </mat-form-field>
 
     </div>
   </mat-dialog-content>

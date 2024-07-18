@@ -12,12 +12,15 @@
             </div>
 
             <div class="col-6" style="display: flex;justify-content: end;">
-              <button (click)="createObject()" class="ml-4" color="primary" fxFlex="none" mat-mini-fab
-                matTooltip="{{'buttons.add' | translate}}" matTooltipClass="primary-tooltip" type="button">
+              <button (click)="createObject()" class="ml-4"
+                style="background-color: white !important;color: #8D493A;"
+                fxFlex="none"
+                mat-mini-fab
+                matTooltip="{{'buttons.add' | translate}}"
+                matTooltipClass="primary-tooltip" type="button">
                 <mat-icon>add</mat-icon>
               </button>
             </div>
-
 
           </div>
 
@@ -35,18 +38,19 @@
                       {{i+1}}
                     </td>
                     <td>
-                      {{data.fullName}}
+                      {{data.name}}
                     </td>
                     <td>
                       {{data.phoneNumber}}
-                    </td>            
+                    </td>
 
                     <td>
-                      {{data.registrationDate|date : 'longDate':'':'ar-EG' }}
+                      {{data.creationDate|date : 'longDate':'':'ar-EG' }}
                     </td>
                     <td class="actions row" style="max-width: 110px;">
                       <div class="col-6">
-                        <button mat-mini-fab color="primary" *ngIf="!data.status" (click)="Update(data)"
+                        <button mat-mini-fab color="primary"
+                          *ngIf="!data.status" (click)="Update(data)"
                           matTooltip="{{'buttons.edit'|translate}}">
                           <span
                             class="material-symbols-outlined">edit</span>
@@ -54,7 +58,8 @@
                       </div>
 
                       <div class="col-6">
-                        <button mat-mini-fab color="warn" *ngIf="!data.status" (click)="deleteObject(data)"
+                        <button mat-mini-fab color="warn" *ngIf="!data.status"
+                          (click)="deleteObject(data)"
                           matTooltip="{{'buttons.delete'|translate}}">
                           <span
                             class="material-symbols-outlined">delete</span>

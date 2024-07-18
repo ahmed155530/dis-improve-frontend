@@ -1,6 +1,7 @@
 import { BaseService } from 'base/services/base.service';
 import { Component, Injector, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationController } from 'base/APIs/AuthenticationController';
 
 @Component({
   selector: 'app-login',
@@ -39,26 +40,24 @@ export class LoginComponent extends BaseService implements OnInit {
 
   Login() {
     this.spinnerService.show();
-    // this.httpService.POST(AuthenticationController.LoginAdmin, this.form.value).subscribe({
-    //   next: (res) => {
-    //     console.log(res);
-    //     if (res.isSuccess) {
-    //       this.authService.storeUserDateAndToken(res.data);
-    //       this.swalService.alertWithSuccess(res.message);
-    //     }
-    //     else
-    //       this.swalService.alertWithError(res['message']);
-    //     //this.spinnerService.hide();
-    //     //this.Reload();
-    //   },
-    //   error: (err: Error) => {
-    //     this.swalService.alertWithError(err.message);
-    //     this.spinnerService.hide();
-    //   },
-    //   complete: () => {
-    //     this.spinnerService.hide();
-    //     this.router.navigateByUrl('/dashboard');
-    //   }
-    // });
+    this.httpService.POST(AuthenticationController.Login, this.form.value).subscribe({
+      next: (res) => {
+        console.log(res);
+        if (res.isSuccess) {
+          this.authService.storeUserDateAndToken(res.data);
+          this.swalService.alertWithSuccess(res.message);
+        }
+        else
+          this.swalService.alertWithError(res['message']);
+      },
+      error: (err: Error) => {
+        this.swalService.alertWithError(err.message);
+        this.spinnerService.hide();
+      },
+      complete: () => {
+        this.spinnerService.hide();
+        this.router.navigateByUrl('/dashboard');
+      }
+    });
   }
 }

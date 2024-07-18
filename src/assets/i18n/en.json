@@ -3,6 +3,7 @@
         "dashboard": "Dashboard",
         "admins": "Admins",
         "companies": "Companies",
+        "companyUsers": "Company users",
         "dataEntry": "Data entry",
         "data": "Data"
     },
@@ -24,6 +25,16 @@
         "name": "Name",
         "email": "Email",
         "phoneNumber": "Phone Number",
+        "registrationDate": "Registration Date",
+        "actions": "Actions"
+    },
+    "companyUsers": {
+        "id": "ID",
+        "name": "Name",
+        "email": "Email",
+        "nid": "ID/passport number",
+        "phoneNumber": "Phone Number",
+        "company": "Company",
         "registrationDate": "Registration Date",
         "actions": "Actions"
     },
@@ -51,7 +62,8 @@
         "registrationDate": "Registration Date",
         "actions": "Actions",
         "email": "Email",
-        "status": "Status"
+        "status": "Status",
+        "AddNewDataRecord": "Add new data"
     },
     "buttons": {
         "edit": "ُEdit",
@@ -62,7 +74,8 @@
         "update": "Update",
         "search": "Search",
         "up": "Up",
-        "down": "Down"
+        "down": "Down",
+        "submit": "Submit"
     },
     "navbar": {
         "user": {
@@ -71,16 +84,36 @@
             "changePassword": "Change Password"
         }
     },
+    "swal": {
+        "Success": "Success",
+        "Close": "Close",
+        "Are you sure?": "Are you sure?",
+        "You won't be able to revert this!": "You won't be able to revert this!",
+        "Yes, delete it!": "Yes, delete it!",
+        "Cancel": "Cancel",
+        "Deleted!": "Deleted!",
+        "Record has been deleted": "Record has been deleted",
+        "Data updated successfully": "Data updated successfully"
+    },
     "messages": {
         "This field is required": "This field is required",
         "Min value is 1": "Min value is 1",
-        "passwordAndConfirmPasswordNotMatched": "كلمة المرور وتأكيد كلمة المرور غير متطابقان",
+        "passwordAndConfirmPasswordNotMatched": "Password and confirm password not matched",
         "Access Denied!": "Access Denied!",
         "Sorry, you don't have permission to view the page": "Sorry, you don't have permission to view the page",
         "Not found!": "Not found!",
         "Sorry, no content for this page": "Sorry, no content for this page"
     },
+    "login": {
+        "username": "Username",
+        "password": "Password"
+    },
+    "changePassword": {
+        "currentPassword": "Current Password",
+        "newPassword": "New Password"
+    },
     "Login": "Login",
+    "ChangePassword": "Change Password",
     "username": "Username",
     "password": "Password",
     "Clear": "Clear"
