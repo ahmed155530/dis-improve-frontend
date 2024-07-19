@@ -89,7 +89,7 @@ export class DashboardComponent extends BaseService implements OnInit, AfterView
       series: [
         {
           type: 'pie',
-          name: 'Percentage',
+          name: 'Count',
           data: [
             {
               name: 'Yellow zone',

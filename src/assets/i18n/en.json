@@ -99,6 +99,9 @@
         "creationDate": "Creation Date",
         "actions": "Actions"
     },
+    "dashboard": {
+        "KPI chart": "KPI Chart"
+    },
     "buttons": {
         "edit": "ُEdit",
         "delete": "Delete",
@@ -112,7 +115,8 @@
         "submit": "Submit",
         "approve": "Approve",
         "reject": "Reject",
-        "complete": "Complete"
+        "complete": "Complete",
+        "refresh": "Refresh"
     },
     "navbar": {
         "user": {
@@ -168,8 +172,8 @@
         "yellow": "Yellow Zone",
         "red": "Red Zone"
     },
-    "yes":"Yes",
-    "no":"No",
+    "yes": "Yes",
+    "no": "No",
     "Login": "Login",
     "ChangePassword": "Change Password",
     "username": "Username",

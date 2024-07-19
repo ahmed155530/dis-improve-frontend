@@ -30,6 +30,7 @@ export class DataListComponent extends BaseService implements OnInit, AfterConte
     'data.country',
     'data.location',
     'data.registrationDate',
+    'data.notes',
     'data.status',
     'data.actions',
   ];

@@ -97,6 +97,14 @@
         <mat-label>{{'data.notes' | translate}}</mat-label>
         <textarea formControlName="notes" matInput></textarea>
       </mat-form-field>
+
+      <mat-form-field appearance="outline" *ngIf="isUpdateMode()"
+        class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <mat-label>{{'data.updateReason' | translate}}</mat-label>
+        <textarea formControlName="updateReason" matInput
+          [required]="isUpdateMode()"></textarea>
+      </mat-form-field>
+
     </div>
   </mat-dialog-content>
 

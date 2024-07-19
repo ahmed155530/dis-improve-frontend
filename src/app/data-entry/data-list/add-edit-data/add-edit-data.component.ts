@@ -51,7 +51,7 @@ export class AddEditDataComponent extends BaseService implements OnInit {
       iDNumber: new FormControl<string>('', Validators.compose([Validators.required])),
       phoneNumber: new FormControl<string>(''),
       notes: new FormControl<string>(''),
-      //searchCountry: new FormControl<string>(''),
+      updateReason : new FormControl<string>(''),
     });
   }
 
@@ -79,6 +79,7 @@ export class AddEditDataComponent extends BaseService implements OnInit {
         countryId: this.form?.value['countryId'],
         phoneNumber: this.form?.value['phoneNumber'],
         notes: this.form?.value['notes'],
+        updateReason: this.form?.value['updateReason'],
       };
       this.Update(data);
     }
@@ -89,7 +90,7 @@ export class AddEditDataComponent extends BaseService implements OnInit {
       id: this.defaults['id'],
       name: this.defaults['name'],
       locationId: this.defaults['locationId'],
-      iDNumber: this.defaults['iDNumber'],
+      iDNumber: this.defaults['idNumber'],
       companyId: this.defaults['companyId'],
       countryId: this.defaults['countryId'],
       phoneNumber: this.defaults['phoneNumber'],
