@@ -6,6 +6,7 @@ import { DataEntryListComponent } from './data-entry-list/data-entry-list.compon
 import { CompanyUserListComponent } from './company-user-list/company-user-list.component';
 import { LocationListComponent } from './location-list/location-list.component';
 import { ConfigurationListComponent } from './configuration-list/configuration-list.component';
+import { DataEntriesCharacteristicsListComponent } from './data-entries-characteristics-list/data-entries-characteristics-list.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'configuration-list',
     component: ConfigurationListComponent
+  },
+  {
+    path: 'data-entry-characteristics-list',
+    component: DataEntriesCharacteristicsListComponent
   },
 ];
 

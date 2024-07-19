@@ -30,6 +30,7 @@ import { LocationListComponent } from './location-list/location-list.component';
 import { AddEditLocationComponent } from './location-list/add-edit-location/add-edit-location.component';
 import { ConfigurationListComponent } from './configuration-list/configuration-list.component';
 import { AddEditConfigurationComponent } from './configuration-list/add-edit-configuration/add-edit-configuration.component';
+import { DataEntriesCharacteristicsListComponent } from './data-entries-characteristics-list/data-entries-characteristics-list.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { AddEditConfigurationComponent } from './configuration-list/add-edit-con
     LocationListComponent,
     AddEditLocationComponent,
     ConfigurationListComponent,
-    AddEditConfigurationComponent
+    AddEditConfigurationComponent,
+    DataEntriesCharacteristicsListComponent
   ],
   imports: [
     CommonModule,

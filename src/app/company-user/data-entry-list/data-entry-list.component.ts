@@ -9,6 +9,7 @@ import { Stations } from 'base/Data/Stations';
 import { BaseService } from 'base/services/base.service';
 import { DataEntryController } from 'base/APIs/DataEntryController';
 import { LocalStorageEnum } from 'base/enums/LocalStorageEnum.enum';
+import { RejectDataEntryComponent } from './reject-data-entry/reject-data-entry.component';
 
 @Component({
   selector: 'app-data-entry-list',
@@ -111,14 +112,16 @@ export class DataEntryListComponent extends BaseService implements OnInit, After
     });
   }
 
-  submitReject(record: any) {
-    // this.swalService.alert(() => {
-    //   this.approve(record);
-    // });
-  }
 
-  reject() {
-
+  reject(data: any) {
+    this.dialog.open(RejectDataEntryComponent, { data: data })
+      .afterClosed()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((data: any) => {
+        if (data) {
+          this.GetAllByCompanyId();
+        }
+      });
   }
 
   GetStatusName(status: number): string {

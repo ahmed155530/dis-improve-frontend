@@ -38,7 +38,7 @@ export class AddEditConfigurationComponent extends BaseService implements OnInit
     this.form = this.fb.group({
       id: new FormControl<number>(0),
       name: new FormControl<string>(''),
-      value: new FormControl<number>(null, Validators.compose([Validators.required])),
+      value: new FormControl<number>(null, Validators.compose([Validators.required, Validators.min(1)])),
     });
   }
 

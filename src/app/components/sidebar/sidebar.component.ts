@@ -22,6 +22,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/data-entry/data-list', title: 'sidebar.data', icon: 'database', class: '', roles: [AuthRole.DataEntryUser], show: false },
   { path: '/company-user/data-list', title: 'sidebar.data', icon: 'description', class: '', roles: [AuthRole.CompanyUser], show: false },
   { path: '/admin/configuration-list', title: 'sidebar.configurations', icon: 'settings', class: '', roles: [AuthRole.AdminUser], show: false },
+  { path: '/admin/data-entry-characteristics-list', title: 'sidebar.dataEntryCharacteristics', icon: 'monitoring', class: '', roles: [AuthRole.AdminUser], show: false },
 ];
 
 @Component({

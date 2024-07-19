@@ -7,7 +7,7 @@
           <div class="card-header card-header-info row">
             <div class="col-6 card-title">
               <h4 class="card-title">
-                {{'sidebar.data'|translate}}
+                {{'sidebar.dataEntryCharacteristics'|translate}}
               </h4>
             </div>
 
@@ -45,29 +45,43 @@
                       {{data.locationName}}
                     </td>
                     <td>
-                      {{data.registrationDate|date : 'medium':'':'en-US' }}
+                      {{data.notes}}
                     </td>
+
+                    <td>
+                      {{data.createdBy}}
+                    </td>
+                    <td>
+                      {{data.creationDate|date : 'medium':'':'en-US' }}
+                    </td>
+
+                    <td>
+                      {{data.updatedBy}}
+                    </td>
+                    <td>
+                      {{data.updateDate|date : 'medium':'':'en-US' }}
+                    </td>
+                    <td>
+                      {{data.updateReason}}
+                    </td>
+
+                    <td>
+                      {{data.deletedBy}}
+                    </td>
+                    <td>
+                      {{data.deleteDate|date : 'medium':'':'en-US' }}
+                    </td>
+                    <td>
+                      {{data.isDeleted ? 'yes' : 'no' |translate}}
+                    </td>
+                    <td>
+                      {{data.deletionReason}}
+                    </td>
+
                     <td>
                       {{GetStatusName(data.status)|translate}}
                     </td>
-                    <td class="actions row" style="max-width: 110px;">
-                      <div class="col-6" *ngIf="data.status == 0">
-                        <button mat-mini-fab color="primary" 
-                          (click)="submitApprove(data)"
-                          matTooltip="{{'buttons.approve'|translate}}">
-                          <span
-                            class="material-symbols-outlined">check_circle</span>
-                        </button>
-                      </div>
 
-                      <div class="col-6" *ngIf="data.status == 0">
-                        <button mat-mini-fab color="warn"
-                          (click)="reject(data)"
-                          matTooltip="{{'buttons.reject'|translate}}">
-                          <span class="material-symbols-outlined">cancel</span>
-                        </button>
-                      </div>
-                    </td>
                   </tr>
 
                 </tbody>

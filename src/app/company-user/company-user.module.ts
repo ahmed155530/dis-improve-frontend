@@ -20,12 +20,14 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxTranslateModule } from 'base/modules/ngx-translate.module';
 import { ApproveDataEntryComponent } from './data-entry-list/approve-data-entry/approve-data-entry.component';
+import { RejectDataEntryComponent } from './data-entry-list/reject-data-entry/reject-data-entry.component';
 
 
 @NgModule({
   declarations: [
     DataEntryListComponent,
-    ApproveDataEntryComponent
+    ApproveDataEntryComponent,
+    RejectDataEntryComponent
   ],
   imports: [
     CommonModule,

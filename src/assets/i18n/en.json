@@ -7,7 +7,8 @@
         "dataEntry": "Data entry users",
         "data": "Data",
         "locations": "Locations",
-        "configurations": "Configurations"
+        "configurations": "Configurations",
+        "dataEntryCharacteristics": "Characteristics"
     },
     "admins": {
         "id": "ID",
@@ -74,7 +75,16 @@
         "email": "Email",
         "status": "Status",
         "AddNewDataRecord": "Add new data",
-        "notes": "Notes"
+        "notes": "Notes",
+        "createdBy": "Created By",
+        "updatedBy": "Updated By",
+        "updateDate": "Update Date",
+        "updateReason": "Update Reason",
+        "deletedBy": "Deleted By",
+        "deleteDate": "Delete Date",
+        "isDeleted": "Is Deleted",
+        "deletionReason": "Deletion Reason",
+        "rejectionReason": "Rejection Reason"
     },
     "locations": {
         "id": "ID",
@@ -158,6 +168,8 @@
         "yellow": "Yellow Zone",
         "red": "Red Zone"
     },
+    "yes":"Yes",
+    "no":"No",
     "Login": "Login",
     "ChangePassword": "Change Password",
     "username": "Username",

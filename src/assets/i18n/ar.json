@@ -10,7 +10,8 @@
       "dataEntry": "مدخلي البيانات",
       "data": "البيانات",
       "locations": "المواقع",
-      "configurations": "الإعدادات"
+      "configurations": "الإعدادات",
+      "dataEntryCharacteristics": "الإحصائيات"
    },
    "admins": {
       "id": "م",
@@ -80,7 +81,16 @@
       "status": "الحالة",
       "registrationDate": "تاريخ التسجيل",
       "AddNewDataRecord": "إضافة جديد",
-      "notes": "ملاحظات"
+      "notes": "ملاحظات",
+      "createdBy": "إنشاء بواسطة",
+      "updatedBy": "تعديل بواسطة",
+      "updateDate": "تاريخ التعديل",
+      "updateReason": "سبب التعديل",
+      "deletedBy": "حذف بواسطة",
+      "deleteDate": "تاريخ الحذف",
+      "isDeleted": "محذوف؟",
+      "deletionReason": "سبب الحذف",
+      "rejectionReason": "سبب الرفض"
    },
    "locations": {
       "id": "م",
@@ -136,7 +146,7 @@
       "green": "المنطقة الخضراء",
       "yellow": "المنطقة الصفراء",
       "red": "المنطقة الحمراء"
-  },
+   },
    "messages": {
       "This field is required": "هذا الحقل مطلوب",
       "imageLink": "يرجى وضع رابط الصورة المرفوعة",
@@ -172,6 +182,8 @@
          "logout": "تسجيل خروج"
       }
    },
+   "yes":"نعم",
+   "no":"لا",
    "notExist": "لا يوجد",
    "Login": "تسجيل دخول",
    "ChangePassword": "تغيير كلمة المرور",

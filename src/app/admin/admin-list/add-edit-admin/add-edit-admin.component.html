@@ -19,15 +19,6 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline"
-        class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-        <mat-label>{{'admins.username' | translate}}</mat-label>
-        <input formControlName="userName" matInput type="text" required>
-        <mat-error *ngIf="form.get('userName').hasError('required')">
-          {{"messages.This field is required" |translate}}
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline"
         class="col-lg-4 col-md-4  col-sm-12 col-xs-12">
         <mat-label>{{'admins.nid' | translate}}</mat-label>
         <input formControlName="idNumber" matInput type="text" required>
