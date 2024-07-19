@@ -20,9 +20,18 @@
 
       <mat-form-field appearance="outline"
         class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-        <mat-label>{{'dataEntries.username' | translate}}</mat-label>
-        <input formControlName="username" matInput type="text" required>
-        <mat-error *ngIf="form.get('username').hasError('required')">
+        <mat-label>{{'dataEntries.location'|translate}}</mat-label>
+        <mat-select formControlName="locationId" required>
+          <!-- <input matInput type="text" (keydown)="searchCountry($event)"> -->
+          <mat-option *ngFor="let location of locations"
+            [value]="location.id"
+            required>
+            {{location.name}}
+          </mat-option>
+        </mat-select>
+
+        <mat-error
+          *ngIf="form.get('locationId').hasError('required') && form.get('locationId').touched">
           {{"messages.This field is required" |translate}}
         </mat-error>
       </mat-form-field>
@@ -79,22 +88,22 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline"
-      class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-      <mat-label>{{'dataEntries.country'|translate}}</mat-label>
-      <mat-select formControlName="companyId" required>
-        <!-- <input matInput type="text" (keydown)="searchCountry($event)"> -->
-        <mat-option *ngFor="let company of companies"
-          [value]="company.id"
-          required>
-          {{company.name}}
-        </mat-option>
-      </mat-select>
+        class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <mat-label>{{'dataEntries.company'|translate}}</mat-label>
+        <mat-select formControlName="companyId" required>
+          <!-- <input matInput type="text" (keydown)="searchCountry($event)"> -->
+          <mat-option *ngFor="let company of companies"
+            [value]="company.id"
+            required>
+            {{company.name}}
+          </mat-option>
+        </mat-select>
 
-      <mat-error
-        *ngIf="form.get('companyId').hasError('required') && form.get('companyId').touched">
-        {{"messages.This field is required" |translate}}
-      </mat-error>
-    </mat-form-field>
+        <mat-error
+          *ngIf="form.get('companyId').hasError('required') && form.get('companyId').touched">
+          {{"messages.This field is required" |translate}}
+        </mat-error>
+      </mat-form-field>
 
     </div>
 

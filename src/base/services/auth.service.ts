@@ -125,6 +125,7 @@ export class AuthService {
         Email: decoded['Email'],
         FullName: decoded['Name'],
         PhoneNumber: decoded['PhoneNumber'],
+        LocationId: Number(decoded['LocationId']),
       };
       this.user = userDTO;
       localStorage.setItem(LocalStorageEnum.app_user, JSON.stringify(this.user));

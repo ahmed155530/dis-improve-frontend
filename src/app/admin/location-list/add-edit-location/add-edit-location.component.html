@@ -1,0 +1,36 @@
+<form [formGroup]="form" style="min-width: 600px;"
+  [dir]="translationService.dir$|async">
+  <div fxLayout="row" fxLayoutAlign="end center" mat-dialog-title>
+    <button class="text-secondary" mat-dialog-close mat-icon-button
+      type="button">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <mat-divider class="-mx-6 text-border"></mat-divider>
+  <mat-dialog-content fxLayout="column" style="margin-top: 20px;">
+    <div class="row">
+      <mat-form-field appearance="outline"
+        class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <mat-label>{{'admins.name' | translate}}</mat-label>
+        <input formControlName="name" matInput type="text" required>
+        <mat-error *ngIf="form.get('name').hasError('required')">
+          {{"messages.This field is required" |translate}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close type="button">{{'buttons.cancel' |
+      translate}} </button>
+    <button *ngIf="isCreateMode()" (click)="Submit()" color="primary" mat-button
+      [disabled]="form.invalid">
+      {{'buttons.create' | translate}}
+    </button>
+    <button *ngIf="isUpdateMode()" (click)="Submit()" color="primary" mat-button
+      [disabled]="form.invalid">
+      {{'buttons.update' | translate}}
+    </button>
+  </mat-dialog-actions>
+</form>

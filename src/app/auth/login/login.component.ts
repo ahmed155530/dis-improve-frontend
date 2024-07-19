@@ -45,8 +45,14 @@ export class LoginComponent extends BaseService implements OnInit {
       next: (res) => {
         console.log(res);
         if (res.isSuccess) {
-          this.authService.storeUserDateAndToken(res.data);
-          this.swalService.alertWithSuccess(res.message);
+          this.authService.storeUserDateAndToken(res.data['token']);
+          if (res.data['isFirstLogin'])
+            this.router.navigateByUrl('/auth/change-password');
+          else {
+            this.swalService.alertWithSuccess(res.message);
+            var userTypeId: number = JSON.parse(localStorage.getItem(LocalStorageEnum.app_user))['UserTypeId'];
+            this.Redirect(userTypeId);
+          }
         }
         else
           this.swalService.alertWithError(res['message']);
@@ -57,8 +63,6 @@ export class LoginComponent extends BaseService implements OnInit {
       },
       complete: () => {
         this.spinnerService.hide();
-        var userTypeId: number = JSON.parse(localStorage.getItem(LocalStorageEnum.app_user))['UserTypeId'];
-        this.Redirect(userTypeId);
       }
     });
   }

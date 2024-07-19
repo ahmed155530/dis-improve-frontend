@@ -21,11 +21,8 @@
 
       <mat-form-field appearance="outline"
         class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-        <mat-label>{{'data.username' | translate}}</mat-label>
-        <input formControlName="userName" matInput type="text" required>
-        <mat-error *ngIf="form.get('userName').hasError('required')">
-          {{"messages.This field is required" |translate}}
-        </mat-error>
+        <mat-label>{{'data.phoneNumber' | translate}}</mat-label>
+        <input formControlName="phoneNumber" matInput type="text">
       </mat-form-field>
 
       <mat-form-field appearance="outline"
@@ -42,11 +39,20 @@
     </div>
 
     <div class="row">
+
       <mat-form-field appearance="outline"
         class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-        <mat-label>{{'data.phoneNumber' | translate}}</mat-label>
-        <input formControlName="phoneNumber" matInput type="text" required>
-        <mat-error *ngIf="form.get('phoneNumber').hasError('required')">
+        <mat-label>{{'dataEntries.location'|translate}}</mat-label>
+        <mat-select formControlName="locationId" required>
+          <!-- <input matInput type="text" (keydown)="searchCountry($event)"> -->
+          <mat-option *ngFor="let location of locations"
+            [value]="location.id"
+            required>
+            {{location.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="form.get('locationId').hasError('required') && form.get('locationId').touched">
           {{"messages.This field is required" |translate}}
         </mat-error>
       </mat-form-field>
@@ -84,6 +90,13 @@
         </mat-error>
       </mat-form-field>
 
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline"
+        class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <mat-label>{{'data.notes' | translate}}</mat-label>
+        <textarea formControlName="notes" matInput></textarea>
+      </mat-form-field>
     </div>
   </mat-dialog-content>
 

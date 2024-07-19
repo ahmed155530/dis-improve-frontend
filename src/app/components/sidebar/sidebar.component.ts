@@ -15,11 +15,13 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
   { path: '/dashboard', title: 'sidebar.dashboard', icon: 'analytics', class: '', roles: [AuthRole.AdminUser], show: false },
   { path: '/admin/admin-list', title: 'sidebar.admins', icon: 'shield_person', class: '', roles: [AuthRole.AdminUser], show: false },
+  { path: '/admin/location-list', title: 'sidebar.locations', icon: 'location_on', class: '', roles: [AuthRole.AdminUser], show: false },
   { path: '/admin/company-list', title: 'sidebar.companies', icon: 'source_environment', class: '', roles: [AuthRole.AdminUser], show: false },
   { path: '/admin/company-user-list', title: 'sidebar.companyUsers', icon: 'person_apron', class: '', roles: [AuthRole.AdminUser], show: false },
   { path: '/admin/data-entry-list', title: 'sidebar.dataEntry', icon: 'person_edit', class: '', roles: [AuthRole.AdminUser], show: false },
   { path: '/data-entry/data-list', title: 'sidebar.data', icon: 'database', class: '', roles: [AuthRole.DataEntryUser], show: false },
   { path: '/company-user/data-list', title: 'sidebar.data', icon: 'description', class: '', roles: [AuthRole.CompanyUser], show: false },
+  { path: '/admin/configuration-list', title: 'sidebar.configurations', icon: 'settings', class: '', roles: [AuthRole.AdminUser], show: false },
 ];
 
 @Component({

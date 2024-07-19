@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CompanyController } from 'base/APIs/CompanyController';
 import { CountryController } from 'base/APIs/CountryController';
 import { DataEntryController } from 'base/APIs/DataEntryController';
+import { LocationController } from 'base/APIs/LocationController';
 import { Gender } from 'base/constants/Gender';
 import { BaseService } from 'base/services/base.service';
 import { Observable } from 'rxjs';
@@ -18,6 +19,7 @@ export class AddEditDataComponent extends BaseService implements OnInit {
   countries: any[] = [];
   selectedCountries: any[] = [];
   companies: any[] = [];
+  locations: any[] = [];
   constructor(
     @Inject(MAT_DIALOG_DATA) public defaults: any,
     private dialogRef: MatDialogRef<AddEditDataComponent>,
@@ -43,11 +45,12 @@ export class AddEditDataComponent extends BaseService implements OnInit {
     this.form = this.fb.group({
       id: new FormControl<number>(0),
       name: new FormControl<string>('', Validators.compose([Validators.required])),
-      userName: new FormControl<string>('', Validators.compose([Validators.required])),
+      locationId: new FormControl<number>(null, Validators.compose([Validators.required])),
       companyId: new FormControl<number>(null, Validators.compose([Validators.required])),
       countryId: new FormControl<number>(null, Validators.compose([Validators.required])),
       iDNumber: new FormControl<string>('', Validators.compose([Validators.required])),
-      phoneNumber: new FormControl<string>('', Validators.compose([Validators.required])),
+      phoneNumber: new FormControl<string>(''),
+      notes: new FormControl<string>(''),
       //searchCountry: new FormControl<string>(''),
     });
   }
@@ -57,11 +60,12 @@ export class AddEditDataComponent extends BaseService implements OnInit {
     if (this.model === 'create') {
       data = {
         name: this.form?.value['name'],
-        userName: this.form?.value['userName'],
+        locationId: this.form?.value['locationId'],
         iDNumber: this.form?.value['iDNumber'],
         companyId: this.form?.value['companyId'],
         countryId: this.form?.value['countryId'],
         phoneNumber: this.form?.value['phoneNumber'],
+        notes: this.form?.value['notes'],
       };
       this.Create(data);
     }
@@ -69,11 +73,12 @@ export class AddEditDataComponent extends BaseService implements OnInit {
       data = {
         id: this.form?.value['id'],
         name: this.form?.value['name'],
-        username: this.form?.value['username'],
-        nid: this.form?.value['nid'],
+        locationId: this.form?.value['locationId'],
+        iDNumber: this.form?.value['iDNumber'],
         companyId: this.form?.value['companyId'],
         countryId: this.form?.value['countryId'],
         phoneNumber: this.form?.value['phoneNumber'],
+        notes: this.form?.value['notes'],
       };
       this.Update(data);
     }
@@ -82,12 +87,13 @@ export class AddEditDataComponent extends BaseService implements OnInit {
   setFormData() {
     this.form.patchValue({
       id: this.defaults['id'],
-      name: this.form?.value['name'],
-      username: this.form?.value['username'],
-      nid: this.form?.value['nid'],
-      companyId: this.form?.value['companyId'],
-      countryId: this.form?.value['countryId'],
-      phoneNumber: this.form?.value['phoneNumber'],
+      name: this.defaults['name'],
+      locationId: this.defaults['locationId'],
+      iDNumber: this.defaults['iDNumber'],
+      companyId: this.defaults['companyId'],
+      countryId: this.defaults['countryId'],
+      phoneNumber: this.defaults['phoneNumber'],
+      notes: this.defaults['notes'],
     });
     this._ref.detectChanges();
   }
@@ -101,27 +107,29 @@ export class AddEditDataComponent extends BaseService implements OnInit {
           this.swalService.alertWithSuccess(res.message ?? '');
           this.dialogRef.close(true);
         }
-        else
+        else {
           this.swalService.alertWithError(res.message ?? '');
+          this.dialogRef.close(false);
+        }
         this.spinnerService.hide();
       }, error: (error: Error) => this.spinnerService.hide()
     });
   }
 
   Update(data: any) {
-    // this.spinnerService.show();
-    // this.httpService.PUT(AdminQualityControlUserController.UpdateQualityControlAppUser, data).subscribe({
-    //   next: (res) => {
-    //     if (res.isSuccess) {
-    //       this.spinnerService.hide();
-    //       this.swalService.alertWithSuccess(res.message ?? '');
-    //       this.dialogRef.close(true);
-    //     }
-    //     else
-    //       this.swalService.alertWithError(res.message ?? '');
-    //     this.spinnerService.hide();
-    //   }, error: (error: Error) => this.spinnerService.hide()
-    // });
+    this.spinnerService.show();
+    this.httpService.PUT(DataEntryController.UpdateDataEntry, data).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.spinnerService.hide();
+          this.swalService.alertWithSuccess(res.message ?? '');
+          this.dialogRef.close(true);
+        }
+        else
+          this.swalService.alertWithError(res.message ?? '');
+        this.spinnerService.hide();
+      }, error: (error: Error) => this.spinnerService.hide()
+    });
   }
 
   isCreateMode() {
@@ -135,6 +143,7 @@ export class AddEditDataComponent extends BaseService implements OnInit {
   getLookups() {
     this.GetAllCountries();
     this.GetAllCompanies();
+    this.GetAllLocations();
   }
 
   GetAllCountries() {
@@ -191,6 +200,24 @@ export class AddEditDataComponent extends BaseService implements OnInit {
     if (this.form.value.searchCountry === '') {
       this.selectedCountries = this.countries;
     }
+  }
+
+  GetAllLocations() {
+    this.spinnerService.show();
+    this.httpService.GET(LocationController.GetAllLocations).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.locations = res.data;
+          this.spinnerService.hide();
+        }
+      },
+      error: (err: Error) => {
+        this.spinnerService.hide();
+      },
+      complete: () => {
+        this.spinnerService.hide();
+      }
+    });
   }
 
 }

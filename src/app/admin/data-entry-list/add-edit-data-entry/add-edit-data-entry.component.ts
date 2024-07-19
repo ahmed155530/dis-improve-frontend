@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AddEditAdminComponent } from 'app/admin/admin-list/add-edit-admin/add-edit-admin.component';
 import { CompanyController } from 'base/APIs/CompanyController';
 import { CountryController } from 'base/APIs/CountryController';
+import { LocationController } from 'base/APIs/LocationController';
 import { UserController } from 'base/APIs/UserController';
 import { Gender } from 'base/constants/Gender';
 import { BaseService } from 'base/services/base.service';
@@ -18,6 +19,7 @@ export class AddEditDataEntryComponent extends BaseService implements OnInit {
   Genders = Gender;
   countries: any[] = [];
   companies: any[] = [];
+  locations: any[] = [];
   constructor(
     @Inject(MAT_DIALOG_DATA) public defaults: any,
     private dialogRef: MatDialogRef<AddEditDataEntryComponent>,
@@ -42,7 +44,7 @@ export class AddEditDataEntryComponent extends BaseService implements OnInit {
     this.form = this.fb.group({
       id: new FormControl<number>(0),
       name: new FormControl<string>('', Validators.compose([Validators.required])),
-      username: new FormControl<string>('', Validators.compose([Validators.required])),
+      locationId: new FormControl<number>(null, Validators.compose([Validators.required])),
       idNumber: new FormControl<string>('', Validators.compose([Validators.required])),
       email: new FormControl<string>('', Validators.compose([Validators.required])),
       phoneNumber: new FormControl<string>('', Validators.compose([Validators.required])),
@@ -56,7 +58,7 @@ export class AddEditDataEntryComponent extends BaseService implements OnInit {
     if (this.model === 'create') {
       data = {
         name: this.form?.value['name'],
-        username: this.form?.value['username'],
+        locationId: this.form?.value['locationId'],
         idNumber: this.form?.value['idNumber'],
         email: this.form?.value['email'],
         countryId: this.form?.value['countryId'],
@@ -71,7 +73,7 @@ export class AddEditDataEntryComponent extends BaseService implements OnInit {
       data = {
         id: this.form?.value['id'],
         name: this.form?.value['name'],
-        username: this.form?.value['username'],
+        locationId: this.form?.value['locationId'],
         idNumber: this.form?.value['idNumber'],
         email: this.form?.value['email'],
         phoneNumber: this.form?.value['phoneNumber'],
@@ -87,7 +89,7 @@ export class AddEditDataEntryComponent extends BaseService implements OnInit {
     this.form.patchValue({
       id: this.defaults['id'],
       name: this.defaults['name'],
-      username: this.defaults['username'],
+      locationId: this.defaults['locationId'],
       idNumber: this.defaults['idNumber'],
       email: this.defaults['email'],
       countryId: this.defaults['countryId'],
@@ -140,6 +142,7 @@ export class AddEditDataEntryComponent extends BaseService implements OnInit {
   getLookups() {
     this.GetAllCountries();
     this.GetAllCompanies();
+    this.GetAllLocations();
   }
 
   GetAllCountries() {
@@ -166,6 +169,24 @@ export class AddEditDataEntryComponent extends BaseService implements OnInit {
       next: (res) => {
         if (res.isSuccess) {
           this.companies = res.data;
+          this.spinnerService.hide();
+        }
+      },
+      error: (err: Error) => {
+        this.spinnerService.hide();
+      },
+      complete: () => {
+        this.spinnerService.hide();
+      }
+    });
+  }
+
+  GetAllLocations() {
+    this.spinnerService.show();
+    this.httpService.GET(LocationController.GetAllLocations).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.locations = res.data;
           this.spinnerService.hide();
         }
       },

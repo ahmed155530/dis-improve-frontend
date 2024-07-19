@@ -8,7 +8,9 @@
       "companies": "الشركات",
       "companyUsers": "موظفي الشركات",
       "dataEntry": "مدخلي البيانات",
-      "data": "البيانات"
+      "data": "البيانات",
+      "locations": "المواقع",
+      "configurations": "الإعدادات"
    },
    "admins": {
       "id": "م",
@@ -51,6 +53,7 @@
       "id": "م",
       "name": "الإسم",
       "username": "إسم المستخدم",
+      "location": "الموقع",
       "nid": "رقم الهوية / رقم الباسبور",
       "phoneNumber": "رقم المحمول",
       "actions": "الإجراءات",
@@ -70,12 +73,27 @@
       "nid": "رقم الهوية / رقم الباسبور",
       "phoneNumber": "رقم المحمول",
       "country": "الجنسية",
+      "location": "الموقع",
       "actions": "الإجراءات",
       "email": "البريد الإليكتروني",
       "password": "كلمة المرور",
       "status": "الحالة",
       "registrationDate": "تاريخ التسجيل",
-      "AddNewDataRecord": "إضافة جديد"
+      "AddNewDataRecord": "إضافة جديد",
+      "notes": "ملاحظات"
+   },
+   "locations": {
+      "id": "م",
+      "name": "الإسم",
+      "creationDate": "تاريخ الإنشاء",
+      "actions": "الإجراءات"
+   },
+   "configurations": {
+      "id": "م",
+      "name": "الإسم",
+      "value": "القيمة",
+      "creationDate": "تاريخ الإنشاء",
+      "actions": "الإجراءات"
    },
    "login": {
       "phoneNumber": "رقم المحمول",
@@ -105,10 +123,20 @@
       "activated": "مفعل",
       "blocked": "موقوف",
       "paid": "مكتمل الدفع",
-      "pending": "بإنتظار الدفع",
       "registrationPending": "بإنتظار التسجيل",
-      "registrationCompleted": "إكتمل التسجيل"
+      "registrationCompleted": "إكتمل التسجيل",
+      "pending": "قيد الإنتظار",
+      "accepted": "مقبول",
+      "rejected": "مرفوض",
+      "updated": "تم التعديل عليه",
+      "deleted": "محذوف",
+      "completed": "مكتمل"
    },
+   "zone": {
+      "green": "المنطقة الخضراء",
+      "yellow": "المنطقة الصفراء",
+      "red": "المنطقة الحمراء"
+  },
    "messages": {
       "This field is required": "هذا الحقل مطلوب",
       "imageLink": "يرجى وضع رابط الصورة المرفوعة",

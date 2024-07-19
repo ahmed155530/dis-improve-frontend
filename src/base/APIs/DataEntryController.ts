@@ -6,4 +6,7 @@ export const DataEntryController = {
     RejectDataEntry: `${environment.BaseURL}/DataEntries/RejectDataEntry`,
     CompleteDataEntry: `${environment.BaseURL}/DataEntries/CompleteDataEntry`,
     GetAllByUserId: `${environment.BaseURL}/DataEntries/GetAllByUserId`,
+    GetAllByLocationId: `${environment.BaseURL}/DataEntries/GetAllByLocationId`,
+    DeleteDataEntry: `${environment.BaseURL}/DataEntries`,
+    UpdateDataEntry: `${environment.BaseURL}/DataEntries`,
 }

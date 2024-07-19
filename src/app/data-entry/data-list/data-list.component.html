@@ -46,36 +46,45 @@
                       {{data.idNumber}}
                     </td>
                     <td>
-                      {{data.userName}}
-                    </td>
-                    <td>
                       {{data.phoneNumber}}
                     </td>
                     <td>
                       {{data.countryName}}
                     </td>
                     <td>
-                      {{data.registrationDate|date : 'longDate':'':'ar-EG' }}
+                      {{data.locationName}}
                     </td>
-                    <td >
-
+                    <td>
+                      {{data.registrationDate|date : 'medium':'':'en-US' }}
+                    </td>
+                    <td>
+                      {{GetStatusName(data.status)|translate}}
                     </td>
                     <td class="actions row" style="max-width: 110px;">
-                      <div class="col-6">
+                      <div class="col-6" *ngIf="data.status == 0">
                         <button mat-mini-fab color="primary"
-                          *ngIf="!data.status" (click)="Update(data)"
+                          (click)="Update(data)"
                           matTooltip="{{'buttons.edit'|translate}}">
                           <span
                             class="material-symbols-outlined">edit</span>
                         </button>
                       </div>
 
-                      <div class="col-6">
-                        <button mat-mini-fab color="warn" *ngIf="!data.status"
-                          (click)="deleteObject(data)"
+                      <div class="col-6" *ngIf="data.status == 0">
+                        <button mat-mini-fab color="warn"
+                          (click)="submitDelete(data)"
                           matTooltip="{{'buttons.delete'|translate}}">
                           <span
                             class="material-symbols-outlined">delete</span>
+                        </button>
+                      </div>
+
+                      <div class="col-6" *ngIf="data.status == 1">
+                        <button mat-mini-fab color="warn"
+                          (click)="complete(data)"
+                          matTooltip="{{'buttons.complete'|translate}}">
+                          <span
+                            class="material-symbols-outlined">verify</span>
                         </button>
                       </div>
                     </td>

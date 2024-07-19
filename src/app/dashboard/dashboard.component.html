@@ -1,9 +1,18 @@
 <div class="main-content">
     <div class="container-fluid">
 
-        <figure class="highcharts-figure card card-body">
-            <div id="pie-chart"></div>
-        </figure>
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <figure class="highcharts-figure card card-body">
+                    <div id="pie-chart"></div>
+                </figure>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                <figure class="highcharts-figure card card-body">
+                    <div id="kpi-chart"></div>
+                </figure>
+            </div>
+        </div>
 
         <div class="row" *ngIf="title">
             <div class="col-md-12">
@@ -39,45 +48,23 @@
                                             {{data.companyName}}
                                         </td>
                                         <td>
-                                            {{data.nid}}
-                                        </td>
-                                        <td>
-                                            {{data.username}}
+                                            {{data.idNumber}}
                                         </td>
                                         <td>
                                             {{data.phoneNumber}}
                                         </td>
                                         <td>
-                                            {{data.nationality}}
+                                            {{data.countryName}}
                                         </td>
                                         <td>
-                                            {{data.registrationDate|date :
-                                            'longDate':'':'ar-EG' }}
+                                            {{data.locationName}}
+                                          </td>
+                                        <td>
+                                            {{data.registrationDate|date : 'medium':'':'en-US' }}
                                         </td>
-                                        <td class="actions row"
-                                            style="max-width: 110px;">
-                                            <div class="col-6">
-                                                <button mat-mini-fab
-                                                    color="primary"
-                                                    *ngIf="!data.status"
-                                                    (click)="Update(data)"
-                                                    matTooltip="{{'buttons.edit'|translate}}">
-                                                    <span
-                                                        class="material-symbols-outlined">edit</span>
-                                                </button>
-                                            </div>
-
-                                            <div class="col-6">
-                                                <button mat-mini-fab
-                                                    color="warn"
-                                                    *ngIf="!data.status"
-                                                    (click)="deleteObject(data)"
-                                                    matTooltip="{{'buttons.delete'|translate}}">
-                                                    <span
-                                                        class="material-symbols-outlined">delete</span>
-                                                </button>
-                                            </div>
-                                        </td>
+                                        <td>
+                                            {{GetStatusName(data.status)|translate}}
+                                          </td>
                                     </tr>
 
                                 </tbody>

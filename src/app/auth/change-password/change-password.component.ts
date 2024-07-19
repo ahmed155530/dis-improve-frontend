@@ -21,7 +21,7 @@ export class ChangePasswordComponent extends BaseService implements OnInit {
   }
 
   ngOnInit() {
-
+    this.initForm();
   }
 
   initForm() {
@@ -47,7 +47,7 @@ export class ChangePasswordComponent extends BaseService implements OnInit {
       username: this.GetUsername()
     });
     console.log(this.form?.value);
-    // this.changePassword();
+    this.changePassword();
   }
 
   changePassword() {
@@ -68,12 +68,12 @@ export class ChangePasswordComponent extends BaseService implements OnInit {
       },
       complete: () => {
         this.spinnerService.hide();
-        this.router.navigateByUrl('/login');
+        this.router.navigateByUrl('/auth/login');
       }
     });
   }
 
   GetUsername(): string {
-    return localStorage.getItem(LocalStorageEnum.UserName);
+    return JSON.parse(localStorage.getItem(LocalStorageEnum.app_user))['Username'];
   }
 }

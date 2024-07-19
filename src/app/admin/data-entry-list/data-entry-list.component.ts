@@ -28,6 +28,7 @@ export class DataEntryListComponent extends BaseService implements OnInit, After
     'dataEntries.phoneNumber',
     'dataEntries.company',
     'dataEntries.country',
+    'dataEntries.location',
     'dataEntries.registrationDate',
     'dataEntries.actions',
   ];

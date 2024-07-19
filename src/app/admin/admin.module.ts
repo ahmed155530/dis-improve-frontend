@@ -26,6 +26,10 @@ import { DataEntryListComponent } from './data-entry-list/data-entry-list.compon
 import { AddEditDataEntryComponent } from './data-entry-list/add-edit-data-entry/add-edit-data-entry.component';
 import { CompanyUserListComponent } from './company-user-list/company-user-list.component';
 import { AddEditCompanyUserComponent } from './company-user-list/add-edit-company-user/add-edit-company-user.component';
+import { LocationListComponent } from './location-list/location-list.component';
+import { AddEditLocationComponent } from './location-list/add-edit-location/add-edit-location.component';
+import { ConfigurationListComponent } from './configuration-list/configuration-list.component';
+import { AddEditConfigurationComponent } from './configuration-list/add-edit-configuration/add-edit-configuration.component';
 
 
 @NgModule({
@@ -37,7 +41,11 @@ import { AddEditCompanyUserComponent } from './company-user-list/add-edit-compan
     DataEntryListComponent,
     AddEditDataEntryComponent,
     CompanyUserListComponent,
-    AddEditCompanyUserComponent
+    AddEditCompanyUserComponent,
+    LocationListComponent,
+    AddEditLocationComponent,
+    ConfigurationListComponent,
+    AddEditConfigurationComponent
   ],
   imports: [
     CommonModule,

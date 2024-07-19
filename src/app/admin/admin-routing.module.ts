@@ -4,11 +4,17 @@ import { AdminListComponent } from './admin-list/admin-list.component';
 import { CompanyListComponent } from './company-list/company-list.component';
 import { DataEntryListComponent } from './data-entry-list/data-entry-list.component';
 import { CompanyUserListComponent } from './company-user-list/company-user-list.component';
+import { LocationListComponent } from './location-list/location-list.component';
+import { ConfigurationListComponent } from './configuration-list/configuration-list.component';
 
 const routes: Routes = [
   {
     path: 'admin-list',
     component: AdminListComponent
+  },
+  {
+    path: 'location-list',
+    component: LocationListComponent
   },
   {
     path: 'company-list',
@@ -21,6 +27,10 @@ const routes: Routes = [
   {
     path: 'data-entry-list',
     component: DataEntryListComponent
+  },
+  {
+    path: 'configuration-list',
+    component: ConfigurationListComponent
   },
 ];
 

@@ -9,6 +9,7 @@ import { BaseService } from 'base/services/base.service';
 import { takeUntil } from 'rxjs';
 import { AddEditDataComponent } from './add-edit-data/add-edit-data.component';
 import { DataEntryController } from 'base/APIs/DataEntryController';
+import { LocalStorageEnum } from 'base/enums/LocalStorageEnum.enum';
 
 @Component({
   selector: 'app-data-list',
@@ -25,9 +26,9 @@ export class DataListComponent extends BaseService implements OnInit, AfterConte
     'data.name',
     'data.companyName',
     'data.nid',
-    'data.username',
     'data.phoneNumber',
     'data.country',
+    'data.location',
     'data.registrationDate',
     'data.status',
     'data.actions',
@@ -46,7 +47,7 @@ export class DataListComponent extends BaseService implements OnInit, AfterConte
   }
 
   ngOnInit() {
-    this.GetAllByUserId();
+    this.GetAllByLocationId();
     this.initForm();
   }
 
@@ -69,19 +70,58 @@ export class DataListComponent extends BaseService implements OnInit, AfterConte
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((adminDTO: any) => {
         if (adminDTO) {
-          this.GetAllByUserId();
+          this.GetAllByLocationId();
         }
       });
   }
 
-  handlePaginator(paginator: MatPaginator) {
-    console.log(paginator);
-    // this.GetSanitationAppUsers();
+  Update(data: any) {
+    this.dialog.open(AddEditDataComponent, { data: data })
+      .afterClosed()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((adminDTO: any) => {
+        if (adminDTO) {
+          this.GetAllByLocationId();
+        }
+      });
   }
 
-  GetAllByUserId() {
+  submitDelete(adminDTO: any) {
+    this.swalService.alertDelete(() => {
+      this.deleteDataEntry(adminDTO);
+    });
+  }
+
+  deleteDataEntry(dataEntryDTO: any) {
+    console.log(dataEntryDTO);
     this.spinnerService.show();
-    this.httpService.GET(`${DataEntryController.GetAllByUserId}`).subscribe({
+    this.httpService.DELETE(`${DataEntryController.DeleteDataEntry}/${dataEntryDTO.id}`).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.GetAllByLocationId();
+        }
+      },
+      error: (err: Error) => {
+        this.spinnerService.hide();
+      },
+      complete: () => {
+        this.spinnerService.hide();
+      }
+    });
+  }
+
+  handlePaginator(paginator: MatPaginator) {
+    console.log(paginator);
+    this.GetAllByLocationId();
+  }
+
+  GetLocationId(): string {
+    return JSON.parse(localStorage.getItem(LocalStorageEnum.app_user))['LocationId'];
+  }
+
+  GetAllByLocationId() {
+    this.spinnerService.show();
+    this.httpService.GET(`${DataEntryController.GetAllByLocationId}/${this.GetLocationId()}`).subscribe({
       next: (res) => {
         if (res.isSuccess) {
           this.dataSource = res.data;
@@ -95,5 +135,25 @@ export class DataListComponent extends BaseService implements OnInit, AfterConte
         this.spinnerService.hide();
       }
     });
+  }
+
+
+  GetStatusName(status: number): string {
+    switch (status) {
+      case 0:
+        return this.translateService.instant('status.pending');
+      case 1:
+        return this.translateService.instant('status.Accepted');
+      case 2:
+        return this.translateService.instant('status.Rejected');
+      case 3:
+        return this.translateService.instant('status.completed');
+      case 4:
+        return this.translateService.instant('status.updated');
+      case 5:
+        return this.translateService.instant('status.deleted');
+      default:
+        break;
+    }
   }
 }

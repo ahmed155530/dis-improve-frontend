@@ -4,8 +4,10 @@
         "admins": "Admins",
         "companies": "Companies",
         "companyUsers": "Company users",
-        "dataEntry": "Data entry",
-        "data": "Data"
+        "dataEntry": "Data entry users",
+        "data": "Data",
+        "locations": "Locations",
+        "configurations": "Configurations"
     },
     "admins": {
         "id": "ID",
@@ -47,6 +49,7 @@
         "id": "ID",
         "name": "Name",
         "username": "Username",
+        "location": "Location",
         "phoneNumber": "Phone Number",
         "nid": "ID/passport number",
         "registrationDate": "Registration Date",
@@ -63,13 +66,28 @@
         "companyName": "Company",
         "username": "Username",
         "country": "Country",
+        "location": "Location",
         "phoneNumber": "Phone Number",
         "nid": "ID/passport number",
         "registrationDate": "Registration Date",
         "actions": "Actions",
         "email": "Email",
         "status": "Status",
-        "AddNewDataRecord": "Add new data"
+        "AddNewDataRecord": "Add new data",
+        "notes": "Notes"
+    },
+    "locations": {
+        "id": "ID",
+        "name": "Name",
+        "creationDate": "Creation Date",
+        "actions": "Actions"
+    },
+    "configurations": {
+        "id": "ID",
+        "name": "Name",
+        "value": "Value",
+        "creationDate": "Creation Date",
+        "actions": "Actions"
     },
     "buttons": {
         "edit": "ُEdit",
@@ -120,6 +138,19 @@
     "changePassword": {
         "currentPassword": "Current Password",
         "newPassword": "New Password"
+    },
+    "status": {
+        "pending": "Pending",
+        "accepted": "Accepted",
+        "rejected": "Rejected",
+        "updated": "Updated",
+        "deleted": "Deleted",
+        "completed": "Completed"
+    },
+    "zone": {
+        "green": "Green Zone",
+        "yellow": "Yellow Zone",
+        "red": "Red Zone"
     },
     "Login": "Login",
     "ChangePassword": "Change Password",
