@@ -143,9 +143,9 @@ export class DataListComponent extends BaseService implements OnInit, AfterConte
       case 0:
         return this.translateService.instant('status.pending');
       case 1:
-        return this.translateService.instant('status.Accepted');
+        return this.translateService.instant('status.accepted');
       case 2:
-        return this.translateService.instant('status.Rejected');
+        return this.translateService.instant('status.rejected');
       case 3:
         return this.translateService.instant('status.completed');
       case 4:

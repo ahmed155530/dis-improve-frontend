@@ -58,4 +58,26 @@ export class SwalService {
     });
   }
 
+  alertApproval(callback: Function, title?: string, text?: string, confirmText?: string, cancelText?: string, afterApproveTitle?: string, afterApproveText?: string) {
+    Swal.fire({
+      title: title ? this.translationService.instant(title) : this.translationService.instant('swal.Are you sure?'),
+      text: text ? this.translationService.instant(text) : this.translationService.instant("swal.You won't be able to revert this!"),
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: confirmText ? this.translationService.instant(confirmText) : this.translationService.instant('swal.Yes, approve it!'),
+      cancelButtonText: cancelText ? this.translationService.instant(cancelText) : this.translationService.instant('swal.Cancel')
+    }).then((result: any) => {
+      if (result.isConfirmed) {
+        callback();
+        Swal.fire(
+          afterApproveTitle ? this.translationService.instant(afterApproveTitle) : this.translationService.instant('swal.Approved!'),
+          afterApproveText ? this.translationService.instant(afterApproveText) : this.translationService.instant('swal.Record has been approved'),
+          'success'
+        )
+      }
+    });
+  }
+
 }

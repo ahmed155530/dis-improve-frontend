@@ -33,30 +33,34 @@
                       {{data.companyName}}
                     </td>
                     <td>
-                      {{data.nid}}
-                    </td>
-                    <td>
-                      {{data.username}}
+                      {{data.idNumber}}
                     </td>
                     <td>
                       {{data.phoneNumber}}
                     </td>
                     <td>
-                      {{data.nationality}}
+                      {{data.countryName}}
+                    </td>
+                    <td>
+                      {{data.locationName}}
                     </td>
                     <td>
                       {{data.registrationDate|date : 'medium':'':'en-US' }}
                     </td>
+                    <td>
+                      {{GetStatusName(data.status)|translate}}
+                    </td>
                     <td class="actions row" style="max-width: 110px;">
-                      <div class="col-6">
-                        <button mat-mini-fab color="primary"
-                          (click)="approve(data)"
+                      <div class="col-6" *ngIf="data.status == 0">
+                        <button mat-mini-fab color="primary" 
+                          (click)="submitApprove(data)"
                           matTooltip="{{'buttons.approve'|translate}}">
-                          <span class="material-symbols-outlined">task_alt</span>
+                          <span
+                            class="material-symbols-outlined">check_circle</span>
                         </button>
                       </div>
 
-                      <div class="col-6">
+                      <div class="col-6" *ngIf="data.status == 0">
                         <button mat-mini-fab color="warn"
                           (click)="reject(data)"
                           matTooltip="{{'buttons.reject'|translate}}">

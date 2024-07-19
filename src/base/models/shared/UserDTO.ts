@@ -6,4 +6,5 @@ export class UserDTO {
     PhoneNumber: string = '';
     UserTypeId: number = null;
     LocationId: number = null;
+    CompanyId: number = null;
 }
