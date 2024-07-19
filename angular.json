@@ -86,7 +86,8 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "benaa-foundation-BO:build"
+                        "browserTarget": "benaa-foundation-BO:build",
+                        "proxyConfig": "proxy.conf.json"
                     },
                     "configurations": {
                         "production": {

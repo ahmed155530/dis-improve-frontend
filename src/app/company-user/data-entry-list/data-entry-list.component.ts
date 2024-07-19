@@ -111,6 +111,11 @@ export class DataEntryListComponent extends BaseService implements OnInit, After
     });
   }
 
+  submitReject(record: any) {
+    // this.swalService.alert(() => {
+    //   this.approve(record);
+    // });
+  }
 
   reject() {
 

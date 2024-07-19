@@ -62,7 +62,7 @@
 
                       <div class="col-6" *ngIf="data.status == 0">
                         <button mat-mini-fab color="warn"
-                          (click)="reject(data)"
+                          (click)="submitReject(data)"
                           matTooltip="{{'buttons.reject'|translate}}">
                           <span class="material-symbols-outlined">cancel</span>
                         </button>

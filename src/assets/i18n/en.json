@@ -118,11 +118,14 @@
         "You won't be able to revert this!": "You won't be able to revert this!",
         "Yes, delete it!": "Yes, delete it!",
         "Yes, approve it!": "Yes, approve it!",
+        "Yes, complete it!": "Yes, complete it!",
         "Cancel": "Cancel",
         "Deleted!": "Deleted!",
         "Approved!": "Approved!",
+        "Completed!": "Completed!",
         "Record has been deleted": "Record has been deleted",
         "Record has been approved": "Record has been approved",
+        "Record has been completed": "Record has been completed",
         "Data updated successfully": "Data updated successfully"
     },
     "messages": {

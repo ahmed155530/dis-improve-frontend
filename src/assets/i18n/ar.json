@@ -155,11 +155,14 @@
       "You won't be able to revert this!": "لن تتمكن من التراجع عن هذا!",
       "Yes, delete it!": "نعم، احذفه!",
       "Yes, approve it!": "نعم، اقبله!",
+      "Yes, complete it!": "نعم، استكمله!",
       "Cancel": "إلغاء",
       "Deleted!": "تم الحذف!",
       "Approved!": "تم الموافقة عليه!",
+      "Completed!": "تم استكماله!",
       "Record has been deleted": "تم حذف السجل بنجاح",
       "Record has been approved": "تم الموافقة عليه بنجاح",
+      "Record has been completed": "تم استكماله بنجاح",
       "Data updated successfully": "تم تحديث البيانات"
    },
    "navbar": {

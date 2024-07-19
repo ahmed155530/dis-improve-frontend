@@ -110,6 +110,31 @@ export class DataListComponent extends BaseService implements OnInit, AfterConte
     });
   }
 
+
+  complete(record: any) {
+    this.spinnerService.show();
+    this.httpService.POST(`${DataEntryController.CompleteDataEntry}/${record.id}`).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.GetAllByLocationId();
+          this.spinnerService.hide();
+        }
+      },
+      error: (err: Error) => {
+        this.spinnerService.hide();
+      },
+      complete: () => {
+        this.spinnerService.hide();
+      }
+    });
+  }
+
+  submitComplete(record: any) {
+    this.swalService.alertComplete(() => {
+      this.complete(record);
+    });
+  }
+
   handlePaginator(paginator: MatPaginator) {
     console.log(paginator);
     this.GetAllByLocationId();

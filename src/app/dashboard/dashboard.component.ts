@@ -69,7 +69,7 @@ export class DashboardComponent extends BaseService implements OnInit, AfterView
       },
       accessibility: {
         point: {
-          valueSuffix: '%',
+          valueSuffix: '',
         },
       },
       tooltip: {
@@ -95,25 +95,16 @@ export class DashboardComponent extends BaseService implements OnInit, AfterView
               name: 'Yellow zone',
               color: 'yellow',
               y: this.kpisCounts['yellowZone'],
-              events: {
-                click: () => this.showTable('Pending')
-              }
             },
             {
               name: 'Green zone',
               y: this.kpisCounts['greenZone'],
               color: 'green',
-              events: {
-                click: () => this.showTable('Success')
-              }
             },
             {
               name: 'Red zone',
               y: this.kpisCounts['redZone'],
               color: 'red',
-              events: {
-                click: () => this.showTable('Rejected')
-              }
             },
           ],
         },
@@ -269,9 +260,9 @@ export class DashboardComponent extends BaseService implements OnInit, AfterView
       case 0:
         return this.translateService.instant('status.pending');
       case 1:
-        return this.translateService.instant('status.Accepted');
+        return this.translateService.instant('status.accepted');
       case 2:
-        return this.translateService.instant('status.Rejected');
+        return this.translateService.instant('status.rejected');
       case 3:
         return this.translateService.instant('status.completed');
       case 4:
