@@ -42,7 +42,6 @@ export class AddEditCompanyUserComponent extends BaseService implements OnInit {
     this.form = this.fb.group({
       id: new FormControl<number>(0),
       name: new FormControl<string>('', Validators.compose([Validators.required])),
-      username: new FormControl<string>('', Validators.compose([Validators.required])),
       idNumber: new FormControl<string>('', Validators.compose([Validators.required])),
       email: new FormControl<string>('', Validators.compose([Validators.required])),
       phoneNumber: new FormControl<string>('', Validators.compose([Validators.required])),
@@ -56,7 +55,6 @@ export class AddEditCompanyUserComponent extends BaseService implements OnInit {
     if (this.model === 'create') {
       data = {
         name: this.form?.value['name'],
-        username: this.form?.value['username'],
         idNumber: this.form?.value['idNumber'],
         email: this.form?.value['email'],
         countryId: this.form?.value['countryId'],
@@ -71,7 +69,6 @@ export class AddEditCompanyUserComponent extends BaseService implements OnInit {
       data = {
         id: this.form?.value['id'],
         name: this.form?.value['name'],
-        username: this.form?.value['username'],
         idNumber: this.form?.value['idNumber'],
         email: this.form?.value['email'],
         phoneNumber: this.form?.value['phoneNumber'],
@@ -87,7 +84,6 @@ export class AddEditCompanyUserComponent extends BaseService implements OnInit {
     this.form.patchValue({
       id: this.defaults['id'],
       name: this.defaults['name'],
-      username: this.defaults['username'],
       idNumber: this.defaults['idNumber'],
       email: this.defaults['email'],
       countryId: this.defaults['countryId'],

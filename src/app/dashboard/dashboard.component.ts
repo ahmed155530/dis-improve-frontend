@@ -12,6 +12,7 @@ import * as Highcharts from 'highcharts';
 })
 export class DashboardComponent extends BaseService implements OnInit, AfterViewInit {
   perAcceptedCounts: any;
+  kpisCounts: number = null;
   totalCount: number = 0;
   displayedColumns: string[] = [
     'data.id',
@@ -38,6 +39,7 @@ export class DashboardComponent extends BaseService implements OnInit, AfterView
 
   ngOnInit() {
     this.GetZoneCounts();
+    this.GetKPIsZoneCounts();
     document.querySelectorAll('#sliders input').forEach((input) =>
       input.addEventListener('input', (e: any) => {
         this.chart.options.chart.options3d[e.target.id] = e.target.value;
@@ -71,7 +73,7 @@ export class DashboardComponent extends BaseService implements OnInit, AfterView
         },
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
+        pointFormat: '{series.name}: {point.y:.1f}',
       },
       plotOptions: {
         pie: {
@@ -90,24 +92,24 @@ export class DashboardComponent extends BaseService implements OnInit, AfterView
           name: 'Percentage',
           data: [
             {
-              name: 'Pending',
+              name: 'Yellow zone',
               color: 'yellow',
-              y: 60,
+              y: this.kpisCounts['yellowZone'],
               events: {
                 click: () => this.showTable('Pending')
               }
             },
             {
-              name: 'Success',
-              y: 20,
+              name: 'Green zone',
+              y: this.kpisCounts['greenZone'],
               color: 'green',
               events: {
                 click: () => this.showTable('Success')
               }
             },
             {
-              name: 'Rejected',
-              y: 20,
+              name: 'Red zone',
+              y: this.kpisCounts['redZone'],
               color: 'red',
               events: {
                 click: () => this.showTable('Rejected')
@@ -140,7 +142,7 @@ export class DashboardComponent extends BaseService implements OnInit, AfterView
         },
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
+        pointFormat: '{series.name}: {point.y:.1f}',
       },
       plotOptions: {
         pie: {
@@ -156,7 +158,7 @@ export class DashboardComponent extends BaseService implements OnInit, AfterView
       series: [
         {
           type: 'pie',
-          name: 'Percentage',
+          name: 'Count',
           data: [
             {
               name: 'Yellow zone',
@@ -279,6 +281,26 @@ export class DashboardComponent extends BaseService implements OnInit, AfterView
       default:
         break;
     }
+  }
+
+
+  GetKPIsZoneCounts() {
+    this.spinnerService.show();
+    this.httpService.GET(`${AdminDashboardController.GetKPIsZoneCounts}`).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.kpisCounts = res.data;
+          this.initKPICharts();
+          this.spinnerService.hide();
+        }
+      },
+      error: (err: Error) => {
+        this.spinnerService.hide();
+      },
+      complete: () => {
+        this.spinnerService.hide();
+      }
+    });
   }
 }
 
