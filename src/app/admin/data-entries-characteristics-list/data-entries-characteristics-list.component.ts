@@ -1,17 +1,13 @@
 import { AfterContentInit, Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
-import { AddEditDataComponent } from 'app/data-entry/data-list/add-edit-data/add-edit-data.component';
 import { CompanyController } from 'base/APIs/CompanyController';
 import { CountryController } from 'base/APIs/CountryController';
 import { DataEntryController } from 'base/APIs/DataEntryController';
 import { LocationController } from 'base/APIs/LocationController';
-import { Gender } from 'base/constants/Gender';
 import { UserTypes } from 'base/constants/UserTypes';
-import { Stations } from 'base/Data/Stations';
-import { LocalStorageEnum } from 'base/enums/LocalStorageEnum.enum';
 import { BaseService } from 'base/services/base.service';
-import { takeUntil, tap } from 'rxjs';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-data-entries-characteristics-list',
@@ -54,7 +50,6 @@ export class DataEntriesCharacteristicsListComponent extends BaseService impleme
 
   ];
   dataSource: any = [];
-  stations: any[] = Stations;
   totalCount: number = 0;
 
   body: any = {};
@@ -192,7 +187,6 @@ export class DataEntriesCharacteristicsListComponent extends BaseService impleme
   }
 
   GetAllCompanies() {
-    this.spinnerService.show();
     this.httpService.GET(CompanyController.GetAllCompanies).subscribe({
       next: (res) => {
         if (res.isSuccess) {
@@ -207,7 +201,6 @@ export class DataEntriesCharacteristicsListComponent extends BaseService impleme
   }
 
   GetAllCountries() {
-    this.spinnerService.show();
     this.httpService.GET(CountryController.GetAllCountries).subscribe({
       next: (res) => {
         if (res.isSuccess) {

@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+}
+
+.filter-title {
+    text-align: center;
+    color: rgb(141, 73, 58);
+    font-weight: bold;
+}
+
+.btn {
+    font-size: 16px;
+}
+
+.btn-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 18%;
+}
+
+.btn-search {
+    background-color: rgb(141, 73, 58) !important;
+    color: white;
+}
+
+.icons {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+}
+
+.icon-verified {
+    color: rgb(15, 195, 15);
+}
+
+.icon-canceled {
+    color: red;
+}
+
+.excel-icon {
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.export {
+    cursor: pointer;
+}
