@@ -10,6 +10,7 @@ import { takeUntil } from 'rxjs';
 import { AddEditDataComponent } from './add-edit-data/add-edit-data.component';
 import { DataEntryController } from 'base/APIs/DataEntryController';
 import { LocalStorageEnum } from 'base/enums/LocalStorageEnum.enum';
+import { RejectRejectionReasonComponent } from './reject-rejection-reason/reject-rejection-reason.component';
 
 @Component({
   selector: 'app-data-list',
@@ -28,8 +29,9 @@ export class DataListComponent extends BaseService implements OnInit, AfterConte
     'data.nid',
     'data.phoneNumber',
     'data.country',
-    'data.location',
     'data.registrationDate',
+    'data.companyRejectionReason',
+    'data.dataEntryRejectionReason',
     'data.notes',
     'data.status',
     'data.actions',
@@ -53,16 +55,6 @@ export class DataListComponent extends BaseService implements OnInit, AfterConte
   }
 
   initForm() {
-    // this.form = this.fb.group({
-    //   pageIndex: new FormControl<number>(1),
-    //   pageSize: new FormControl<number>(10),
-    //   fullName: new FormControl<string>(''),
-    //   phoneNumber: new FormControl<string>('', Validators.compose([Validators.maxLength(11)])),
-    //   stationIds: new FormControl<number[]>([]),
-    //   gender: new FormControl<number[]>([]),
-    //   fromDate: new FormControl<Date>(null),
-    //   toDate: new FormControl<Date>(null),
-    // });
   }
 
   createObject() {
@@ -141,10 +133,6 @@ export class DataListComponent extends BaseService implements OnInit, AfterConte
     this.GetAllByLocationId();
   }
 
-  GetLocationId(): string {
-    return JSON.parse(localStorage.getItem(LocalStorageEnum.app_user))['LocationId'];
-  }
-
   GetAllByLocationId() {
     this.spinnerService.show();
     this.httpService.GET(`${DataEntryController.GetAllByLocationId}/${this.GetLocationId()}`).subscribe({
@@ -159,6 +147,17 @@ export class DataListComponent extends BaseService implements OnInit, AfterConte
       },
       complete: () => {
         this.spinnerService.hide();
+      }
+    });
+  }
+
+  rejectRejection(data:any){
+    this.dialog.open(RejectRejectionReasonComponent, { data: data })
+    .afterClosed()
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe((adminDTO: any) => {
+      if (adminDTO) {
+        this.GetAllByLocationId();
       }
     });
   }

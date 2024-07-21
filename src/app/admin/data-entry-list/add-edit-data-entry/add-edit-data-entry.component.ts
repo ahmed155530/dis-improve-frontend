@@ -49,7 +49,6 @@ export class AddEditDataEntryComponent extends BaseService implements OnInit {
       email: new FormControl<string>('', Validators.compose([Validators.required])),
       phoneNumber: new FormControl<string>('', Validators.compose([Validators.required])),
       countryId: new FormControl<number>(null, Validators.compose([Validators.required])),
-      companyId: new FormControl<number>(null, Validators.compose([Validators.required])),
     });
   }
 
@@ -62,7 +61,6 @@ export class AddEditDataEntryComponent extends BaseService implements OnInit {
         idNumber: this.form?.value['idNumber'],
         email: this.form?.value['email'],
         countryId: this.form?.value['countryId'],
-        companyId: this.form?.value['companyId'],
         phoneNumber: this.form?.value['phoneNumber'],
         userTypeId: 1,
         password: '123456',
@@ -78,7 +76,6 @@ export class AddEditDataEntryComponent extends BaseService implements OnInit {
         email: this.form?.value['email'],
         phoneNumber: this.form?.value['phoneNumber'],
         countryId: this.form?.value['countryId'],
-        companyId: this.form?.value['companyId'],
         userTypeId: 1
       };
       this.Update(data);
@@ -93,7 +90,6 @@ export class AddEditDataEntryComponent extends BaseService implements OnInit {
       idNumber: this.defaults['idNumber'],
       email: this.defaults['email'],
       countryId: this.defaults['countryId'],
-      companyId: this.defaults['companyId'],
       phoneNumber: this.defaults['phoneNumber'],
     });
     this._ref.detectChanges();
@@ -141,7 +137,6 @@ export class AddEditDataEntryComponent extends BaseService implements OnInit {
 
   getLookups() {
     this.GetAllCountries();
-    this.GetAllCompanies();
     this.GetAllLocations();
   }
 
@@ -151,24 +146,6 @@ export class AddEditDataEntryComponent extends BaseService implements OnInit {
       next: (res) => {
         if (res.isSuccess) {
           this.countries = res.data;
-          this.spinnerService.hide();
-        }
-      },
-      error: (err: Error) => {
-        this.spinnerService.hide();
-      },
-      complete: () => {
-        this.spinnerService.hide();
-      }
-    });
-  }
-
-  GetAllCompanies() {
-    this.spinnerService.show();
-    this.httpService.GET(CompanyController.GetAllCompanies).subscribe({
-      next: (res) => {
-        if (res.isSuccess) {
-          this.companies = res.data;
           this.spinnerService.hide();
         }
       },

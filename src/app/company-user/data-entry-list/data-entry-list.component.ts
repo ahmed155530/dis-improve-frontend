@@ -30,6 +30,8 @@ export class DataEntryListComponent extends BaseService implements OnInit, After
     'data.country',
     'data.location',
     'data.registrationDate',
+    'data.companyRejectionReason',
+    'data.dataEntryRejectionReason',
     'data.status',
     'data.actions',
   ];

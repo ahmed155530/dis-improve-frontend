@@ -21,12 +21,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxTranslateModule } from 'base/modules/ngx-translate.module';
 import { AddEditDataComponent } from './data-list/add-edit-data/add-edit-data.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { RejectRejectionReasonComponent } from './data-list/reject-rejection-reason/reject-rejection-reason.component';
 
 
 @NgModule({
   declarations: [
     DataListComponent,
-    AddEditDataComponent
+    AddEditDataComponent,
+    RejectRejectionReasonComponent
   ],
   imports: [
     CommonModule,

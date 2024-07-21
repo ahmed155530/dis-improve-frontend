@@ -1,22 +1,19 @@
 import { Component, Inject, Injector, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { CompanyController } from 'base/APIs/CompanyController';
-import { CountryController } from 'base/APIs/CountryController';
 import { DataEntryController } from 'base/APIs/DataEntryController';
-import { LocationController } from 'base/APIs/LocationController';
 import { BaseService } from 'base/services/base.service';
 
 @Component({
-  selector: 'app-reject-data-entry',
-  templateUrl: './reject-data-entry.component.html',
-  styleUrls: ['./reject-data-entry.component.scss']
+  selector: 'app-reject-rejection-reason',
+  templateUrl: './reject-rejection-reason.component.html',
+  styleUrls: ['./reject-rejection-reason.component.scss']
 })
-export class RejectDataEntryComponent extends BaseService implements OnInit {
+export class RejectRejectionReasonComponent extends BaseService implements OnInit {
   form: FormGroup;
   constructor(
     @Inject(MAT_DIALOG_DATA) public defaults: any,
-    private dialogRef: MatDialogRef<RejectDataEntryComponent>,
+    private dialogRef: MatDialogRef<RejectRejectionReasonComponent>,
     public override injector: Injector,
   ) {
     super(injector);
@@ -53,7 +50,7 @@ export class RejectDataEntryComponent extends BaseService implements OnInit {
 
   Create(data: any) {
     this.spinnerService.show();
-    this.httpService.POST(DataEntryController.CompanyRejectDataEntry, data).subscribe({
+    this.httpService.POST(DataEntryController.DataEntryRejectDataEntry, data).subscribe({
       next: (res) => {
         if (res.isSuccess) {
           this.spinnerService.hide();

@@ -41,17 +41,18 @@ export class AddEditDataComponent extends BaseService implements OnInit {
     }
   }
 
+
   initForm() {
     this.form = this.fb.group({
       id: new FormControl<number>(0),
       name: new FormControl<string>('', Validators.compose([Validators.required])),
-      locationId: new FormControl<number>(null, Validators.compose([Validators.required])),
+      locationId: new FormControl<number>(Number(this.GetLocationId()), Validators.compose([Validators.required])),
       companyId: new FormControl<number>(null, Validators.compose([Validators.required])),
       countryId: new FormControl<number>(null, Validators.compose([Validators.required])),
       iDNumber: new FormControl<string>('', Validators.compose([Validators.required])),
       phoneNumber: new FormControl<string>(''),
       notes: new FormControl<string>(''),
-      updateReason : new FormControl<string>(''),
+      updateReason: new FormControl<string>(''),
     });
   }
 

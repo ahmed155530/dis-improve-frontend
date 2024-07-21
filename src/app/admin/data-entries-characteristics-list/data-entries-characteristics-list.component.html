@@ -11,6 +11,20 @@
               </h4>
             </div>
 
+            <div class="col-6" style="display: flex;justify-content: end;">
+              <div class="row">
+                <div class="col-6">
+                  <span class="excel-icon" style="cursor: pointer;"
+                    matTooltip="{{'buttons.excel' | translate}}"
+                    (click)="exportToExcel()">
+                    <img
+                      src="data:image/png;base64,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"
+                      alt>
+                  </span>
+                </div>
+              </div>
+            </div>
+
           </div>
 
           <div class="card-body">
@@ -46,6 +60,9 @@
                     </td>
                     <td>
                       {{data.notes}}
+                    </td>
+                    <td>
+                      {{data.rejectionReason}}
                     </td>
 
                     <td>
@@ -90,6 +107,7 @@
                 [length]="totalCount" showFirstLastButtons
                 [pageSize]="MatPaginatorSize?.pageSize"
                 [pageSizeOptions]="MatPaginatorSize?.pageSizeOptions"
+                [length]="totalCount"
                 aria-label="Select page">
               </mat-paginator>
             </div>

@@ -86,7 +86,7 @@ export class AddEditLocationComponent extends BaseService implements OnInit {
 
   Update(data: any) {
     this.spinnerService.show();
-    this.httpService.PUT(`${LocationController.UpdateLocation}/${data.id}`, data).subscribe({
+    this.httpService.PUT(`${LocationController.UpdateLocation}`, data).subscribe({
       next: (res) => {
         if (res.isSuccess) {
           this.spinnerService.hide();

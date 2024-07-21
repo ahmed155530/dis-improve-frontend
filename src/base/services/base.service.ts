@@ -15,6 +15,8 @@ import { PermissionsService } from './permissions.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SwalService } from './swal.service';
 import { RegularExpressions } from 'base/constants/RegularExpressions';
+import { LocalStorageEnum } from 'base/enums/LocalStorageEnum.enum';
+import { AuthRole } from 'base/enums/AuthRoles.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -81,4 +83,33 @@ export class BaseService {
   AddRoles(permission: string | string[]) {
     this.PermissionsService.AddPermissions(permission);
   }
+
+  GetLocationId(): string {
+    return JSON.parse(localStorage.getItem(LocalStorageEnum.app_user))['LocationId'];
+  }
+
+  GetUserRoles(): string[] {
+    return JSON.parse(localStorage.getItem(LocalStorageEnum.Roles));
+  }
+
+  GetUserRole(): string {
+    var role = JSON.parse(localStorage.getItem(LocalStorageEnum.Roles))[0];
+    console.log(role);
+    return role;
+  }
+
+  GetUserRoleName(role: string): string {
+    switch (role) {
+      case AuthRole.AdminUser:
+        return 'roles.admin';
+      case AuthRole.CompanyUser:
+        return 'roles.companyUser';
+      case AuthRole.DataEntryUser:
+        return 'roles.dataEntry';
+      default:
+        break;
+    }
+
+  }
+
 }

@@ -14,6 +14,7 @@ import { UserDTO } from 'base/models/shared/UserDTO';
 export class NavbarComponent extends BaseService implements OnInit {
     private listTitles: any[];
     location: Location;
+    role: string = '';
     mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
@@ -34,6 +35,8 @@ export class NavbarComponent extends BaseService implements OnInit {
 
     ngOnInit() {
         this.CheckDir();
+        this.role = this.GetUserRoleName(this.GetUserRole());
+        console.log(this.role);
         this.getCountryCode();
         this.listTitles = ROUTES.filter(listTitle => listTitle);
         const navbar: HTMLElement = this.element.nativeElement;

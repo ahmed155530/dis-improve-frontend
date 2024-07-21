@@ -90,7 +90,9 @@
       "deleteDate": "تاريخ الحذف",
       "isDeleted": "محذوف؟",
       "deletionReason": "سبب الحذف",
-      "rejectionReason": "سبب الرفض"
+      "rejectionReason": "سبب الرفض",
+      "companyRejectionReason": "سبب رفض موظف الشركة",
+      "dataEntryRejectionReason": "سبب رفض مدخل البيانات"
    },
    "locations": {
       "id": "م",
@@ -131,7 +133,8 @@
       "approve": "موافقة",
       "reject": "رفض",
       "complete": "إكمال",
-      "refresh": "تحديث"
+      "refresh": "تحديث",
+      "excel": "تصدير"
    },
    "status": {
       "activated": "مفعل",
@@ -185,6 +188,11 @@
          "changePassword": "تغيير كلمة المرور",
          "logout": "تسجيل خروج"
       }
+   },
+   "roles": {
+      "admin": "أدمن",
+      "companyUser": "موظف شركة",
+      "dataEntry": "إدخال بيانات"
    },
    "yes": "نعم",
    "no": "لا",

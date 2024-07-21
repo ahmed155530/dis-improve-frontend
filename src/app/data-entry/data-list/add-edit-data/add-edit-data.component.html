@@ -43,7 +43,7 @@
       <mat-form-field appearance="outline"
         class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
         <mat-label>{{'dataEntries.location'|translate}}</mat-label>
-        <mat-select formControlName="locationId" required>
+        <mat-select formControlName="locationId" disabled>
           <!-- <input matInput type="text" (keydown)="searchCountry($event)"> -->
           <mat-option *ngFor="let location of locations"
             [value]="location.id"

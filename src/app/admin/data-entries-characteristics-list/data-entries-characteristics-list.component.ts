@@ -29,6 +29,7 @@ export class DataEntriesCharacteristicsListComponent extends BaseService impleme
     'data.country',
     'data.location',
     'data.notes',
+    'data.rejectionReason',
 
     'data.createdBy',
     'data.registrationDate',
@@ -41,7 +42,7 @@ export class DataEntriesCharacteristicsListComponent extends BaseService impleme
     'data.deleteDate',
     'data.isDeleted',
     'data.deletionReason',
-    
+
     'data.status',
 
   ];
@@ -50,6 +51,7 @@ export class DataEntriesCharacteristicsListComponent extends BaseService impleme
   totalCount: number = 0;
 
   viewType: 'Grid' | 'Card' = 'Grid';
+  base64Data: any;
   constructor(public override injector: Injector
 
   ) {
@@ -73,6 +75,7 @@ export class DataEntriesCharacteristicsListComponent extends BaseService impleme
       next: (res) => {
         if (res.isSuccess) {
           this.dataSource = res.data;
+          this.totalCount = res.data.length;
           this.spinnerService.hide();
         }
       },
@@ -102,5 +105,34 @@ export class DataEntriesCharacteristicsListComponent extends BaseService impleme
       default:
         break;
     }
+  }
+
+  exportToExcel() {
+    this.spinnerService.show();
+    this.httpService.GET(DataEntryController.ExportAllDataEntries).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.base64Data = res.data;
+          this.downloadFile();
+          this.spinnerService.hide();
+        }
+      },
+      error: (err: Error) => {
+        this.spinnerService.hide();
+      },
+      complete: () => {
+        this.spinnerService.hide();
+      }
+    });
+  }
+
+  downloadFile() {
+    this.spinnerService.show();
+    const src = `data:text/csv;base64,${this.base64Data}`;
+    const link = document.createElement("a");
+    link.href = src;
+    link.download = `All data entries_${this.datepipe.transform(new Date(), 'yyyy-MM-dd hh:mm:ss')}`;
+    link.click();
+    this.spinnerService.hide();
   }
 }

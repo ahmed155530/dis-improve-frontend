@@ -48,11 +48,17 @@
                       {{data.registrationDate|date : 'medium':'':'en-US' }}
                     </td>
                     <td>
+                      {{data.companyRejectionReason}}
+                    </td>
+                    <td>
+                      {{data.dataEntryRejectionReason}}
+                    </td>
+                    <td>
                       {{GetStatusName(data.status)|translate}}
                     </td>
                     <td class="actions row" style="max-width: 110px;">
                       <div class="col-6" *ngIf="data.status == 0">
-                        <button mat-mini-fab color="primary" 
+                        <button mat-mini-fab color="primary"
                           (click)="submitApprove(data)"
                           matTooltip="{{'buttons.approve'|translate}}">
                           <span

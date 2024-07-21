@@ -84,7 +84,9 @@
         "deleteDate": "Delete Date",
         "isDeleted": "Is Deleted",
         "deletionReason": "Deletion Reason",
-        "rejectionReason": "Rejection Reason"
+        "rejectionReason": "Rejection Reason",
+        "companyRejectionReason": "Company Rejection Reason",
+        "dataEntryRejectionReason": "Data Entry Rejection Reason"
     },
     "locations": {
         "id": "ID",
@@ -116,7 +118,8 @@
         "approve": "Approve",
         "reject": "Reject",
         "complete": "Complete",
-        "refresh": "Refresh"
+        "refresh": "Refresh",
+        "excel": "Export Excel"
     },
     "navbar": {
         "user": {
@@ -171,6 +174,11 @@
         "green": "Green Zone",
         "yellow": "Yellow Zone",
         "red": "Red Zone"
+    },
+    "roles": {
+        "admin": "Admin",
+        "companyUser": "Company",
+        "dataEntry": "Data entry"
     },
     "yes": "Yes",
     "no": "No",
