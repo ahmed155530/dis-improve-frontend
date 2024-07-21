@@ -51,9 +51,7 @@ export class DataEntriesCharacteristicsListComponent extends BaseService impleme
   ];
   dataSource: any = [];
   totalCount: number = 0;
-
   body: any = {};
-
   viewType: 'Grid' | 'Card' = 'Grid';
   base64Data: any;
   constructor(public override injector: Injector
@@ -163,7 +161,6 @@ export class DataEntriesCharacteristicsListComponent extends BaseService impleme
     link.click();
     this.spinnerService.hide();
   }
-
 
   getLookups() {
     this.GetAllLocations();

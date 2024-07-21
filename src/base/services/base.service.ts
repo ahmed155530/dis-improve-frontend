@@ -90,6 +90,10 @@ export class BaseService {
     return JSON.parse(localStorage.getItem(LocalStorageEnum.app_user))['LocationId'];
   }
 
+  GetCompanyID(): string {
+    return JSON.parse(localStorage.getItem(LocalStorageEnum.app_user))['CompanyId'];
+  }
+
   GetUserRoles(): string[] {
     return JSON.parse(localStorage.getItem(LocalStorageEnum.Roles));
   }

@@ -1,6 +1,85 @@
 <div class="main-content">
   <div class="container-fluid">
 
+    <div class="card" style="padding:20px 30px;" [formGroup]="form">
+      <h2 class="filter-title">{{'filters.filters'|translate}}</h2>
+      <div class="row">
+
+        <mat-form-field appearance="outline" class="col-3">
+          <mat-label>{{'filters.searchKey'|translate}}</mat-label>
+          <input formControlName="searchKey" matInput type="text">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-3">
+          <mat-label>{{'data.country'|translate}}</mat-label>
+          <mat-select formControlName="countryIds" multiple>
+            <mat-option *ngFor="let country of countries" [value]="country.id">
+              {{country.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-3">
+          <mat-label>{{'data.location'|translate}}</mat-label>
+          <mat-select formControlName="locationIds" multiple>
+            <mat-option *ngFor="let location of locations"
+              [value]="location.id">
+              {{location.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-3">
+          <mat-label>{{'data.status'|translate}}</mat-label>
+          <mat-select formControlName="status" multiple>
+            <mat-option *ngFor="let status of statuses"
+              [value]="status.id">
+              {{status.name|translate}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+      <div class="row">
+
+        <mat-form-field appearance="outline" class="col-3">
+          <mat-label>{{'data.registrationDateFrom' |translate}}</mat-label>
+          <input matInput formControlName="registrationDateFrom"
+            [matDatepicker]="FromPicker">
+          <mat-datepicker-toggle matSuffix
+            [for]="FromPicker"></mat-datepicker-toggle>
+          <mat-datepicker #FromPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-3">
+          <mat-label>{{'data.registrationDateTo' |translate}}</mat-label>
+          <input matInput formControlName="registrationDateTo"
+            [matDatepicker]="ToPicker">
+          <mat-datepicker-toggle matSuffix
+            [for]="ToPicker"></mat-datepicker-toggle>
+          <mat-datepicker #ToPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="row" style="display: flex;justify-content: flex-end;">
+        <div class="btn-flex-container">
+          <button mat-raised-button class="=btn btn-search"
+            (click)="GetAllByCompanyId()">
+            <mat-icon>search</mat-icon>
+            {{'buttons.search'|translate}}
+          </button>
+          <button mat-raised-button (click)="initForm()"
+            style="color: rgb(141, 73, 58) !important;">
+            <mat-icon>restart_alt</mat-icon>
+            {{'buttons.reset'|translate}}
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
     <div class="row">
       <div class="col-md-12">
         <div class="card">
@@ -82,6 +161,7 @@
                 [length]="totalCount" showFirstLastButtons
                 [pageSize]="MatPaginatorSize?.pageSize"
                 [pageSizeOptions]="MatPaginatorSize?.pageSizeOptions"
+                [length]="totalCount"
                 aria-label="Select page">
               </mat-paginator>
             </div>

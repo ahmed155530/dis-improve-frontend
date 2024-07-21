@@ -1,7 +1,6 @@
 import { AfterContentInit, Component, Injector, OnInit, ViewChild } from '@angular/core';
-import { takeUntil } from 'rxjs';
-import { ApproveDataEntryComponent } from './approve-data-entry/approve-data-entry.component';
-import { FormGroup } from '@angular/forms';
+import { takeUntil, tap } from 'rxjs';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { Gender } from 'base/constants/Gender';
 import { UserTypes } from 'base/constants/UserTypes';
@@ -10,6 +9,8 @@ import { BaseService } from 'base/services/base.service';
 import { DataEntryController } from 'base/APIs/DataEntryController';
 import { LocalStorageEnum } from 'base/enums/LocalStorageEnum.enum';
 import { RejectDataEntryComponent } from './reject-data-entry/reject-data-entry.component';
+import { LocationController } from 'base/APIs/LocationController';
+import { CountryController } from 'base/APIs/CountryController';
 
 @Component({
   selector: 'app-data-entry-list',
@@ -19,8 +20,9 @@ import { RejectDataEntryComponent } from './reject-data-entry/reject-data-entry.
 export class DataEntryListComponent extends BaseService implements OnInit, AfterContentInit {
   form: FormGroup = null;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  UserTypes = UserTypes;
-  Genders = Gender;
+  countries: any[] = [];
+  locations: any[] = [];
+
   displayedColumns: string[] = [
     'data.id',
     'data.name',
@@ -36,47 +38,68 @@ export class DataEntryListComponent extends BaseService implements OnInit, After
     'data.actions',
   ];
   dataSource: any = [];
-  stations: any[] = Stations;
   totalCount: number = 0;
-
+  body: any = {};
   viewType: 'Grid' | 'Card' = 'Grid';
   dialog: any;
   constructor(public override injector: Injector
 
   ) {
     super(injector);
+    this.initForm();
+    this.setForm();
+    if (this.paginator) {
+      console.log(this.paginator);
+      this.paginator.pageIndex = 0;
+      this.paginator.pageSize = 10;
+      this.paginator.page.pipe(tap(() => {
+      })).subscribe();
+    }
+    this.GetAllByCompanyId();
   }
   ngAfterContentInit(): void {
   }
 
   ngOnInit() {
-    this.GetAllByCompanyId();
-    this.initForm();
+    this.getLookups();
   }
 
   initForm() {
-    // this.form = this.fb.group({
-    //   pageIndex: new FormControl<number>(1),
-    //   pageSize: new FormControl<number>(10),
-    //   fullName: new FormControl<string>(''),
-    //   phoneNumber: new FormControl<string>('', Validators.compose([Validators.maxLength(11)])),
-    //   stationIds: new FormControl<number[]>([]),
-    //   gender: new FormControl<number[]>([]),
-    //   fromDate: new FormControl<Date>(null),
-    //   toDate: new FormControl<Date>(null),
-    // });
+    this.form = this.fb.group({
+      countryIds: new FormControl<number[]>([]),
+      locationIds: new FormControl<number[]>([]),
+      status: new FormControl<number[]>([]),
+      searchKey: new FormControl<string>(''),
+      registrationDateFrom: new FormControl<Date>(null),
+      registrationDateTo: new FormControl<Date>(null),
+    });
   }
 
-  GetCompanyID(): string {
-    return JSON.parse(localStorage.getItem(LocalStorageEnum.app_user))['CompanyId'];
+  setForm(): any {
+    this.body = {
+      paginatorModel: {
+        pageNumber: this.paginator?.pageIndex ? this.paginator?.pageIndex + 1 : 1,
+        pageSize: this.paginator?.pageSize ?? 10,
+      },
+      searchKey: this.form?.value['searchKey'],
+      countryIds: this.form?.value['countryIds'],
+      locationIds: this.form?.value['locationIds'],
+      companyId: this.GetCompanyID(),
+      registrationDateFrom: this.datepipe.transform(this.form?.value['registrationDateFrom'], 'yyyy-MM-dd'),
+      registrationDateTo: this.datepipe.transform(this.form?.value['registrationDateTo'], 'yyyy-MM-dd'),
+    };
+    return this.body;
   }
 
   GetAllByCompanyId() {
     this.spinnerService.show();
-    this.httpService.GET(`${DataEntryController.GetAllByCompanyId}/${this.GetCompanyID()}`).subscribe({
+    var body = this.setForm();
+    console.log(body);
+    this.httpService.POST(`${DataEntryController.GetAllByCompanyId}`, body).subscribe({
       next: (res) => {
         if (res.isSuccess) {
-          this.dataSource = res.data;
+          this.dataSource = res.data.items;
+          this.totalCount = res.data.totalCount;
           this.spinnerService.hide();
         }
       },
@@ -85,6 +108,40 @@ export class DataEntryListComponent extends BaseService implements OnInit, After
       },
       complete: () => {
         this.spinnerService.hide();
+      }
+    });
+  }
+
+  getLookups() {
+    this.GetAllLocations();
+    this.GetAllCountries();
+  }
+
+  GetAllLocations() {
+    this.httpService.GET(LocationController.GetAllLocations).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.locations = res.data;
+          this.spinnerService.hide();
+        }
+      },
+      error: (err: Error) => {
+      },
+      complete: () => {
+      }
+    });
+  }
+
+  GetAllCountries() {
+    this.httpService.GET(CountryController.GetAllCountries).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.countries = res.data;
+        }
+      },
+      error: (err: Error) => {
+      },
+      complete: () => {
       }
     });
   }
