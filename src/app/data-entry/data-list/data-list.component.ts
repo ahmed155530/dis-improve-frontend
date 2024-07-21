@@ -162,23 +162,4 @@ export class DataListComponent extends BaseService implements OnInit, AfterConte
     });
   }
 
-
-  GetStatusName(status: number): string {
-    switch (status) {
-      case 0:
-        return this.translateService.instant('status.pending');
-      case 1:
-        return this.translateService.instant('status.accepted');
-      case 2:
-        return this.translateService.instant('status.rejected');
-      case 3:
-        return this.translateService.instant('status.completed');
-      case 4:
-        return this.translateService.instant('status.updated');
-      case 5:
-        return this.translateService.instant('status.deleted');
-      default:
-        break;
-    }
-  }
 }

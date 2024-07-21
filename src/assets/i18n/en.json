@@ -71,6 +71,8 @@
         "phoneNumber": "Phone Number",
         "nid": "ID/passport number",
         "registrationDate": "Registration Date",
+        "registrationDateFrom": "Registration Date From",
+        "registrationDateTo": "Registration Date To",
         "actions": "Actions",
         "email": "Email",
         "status": "Status",
@@ -119,7 +121,8 @@
         "reject": "Reject",
         "complete": "Complete",
         "refresh": "Refresh",
-        "excel": "Export Excel"
+        "excel": "Export Excel",
+        "reset": "Reset"
     },
     "navbar": {
         "user": {
@@ -179,6 +182,10 @@
         "admin": "Admin",
         "companyUser": "Company",
         "dataEntry": "Data entry"
+    },
+    "filters": {
+        "filters": "Filter",
+        "searchKey": "Search Key"
     },
     "yes": "Yes",
     "no": "No",

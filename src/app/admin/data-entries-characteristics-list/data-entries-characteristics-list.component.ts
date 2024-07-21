@@ -1,14 +1,17 @@
 import { AfterContentInit, Component, Injector, OnInit, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { AddEditDataComponent } from 'app/data-entry/data-list/add-edit-data/add-edit-data.component';
+import { CompanyController } from 'base/APIs/CompanyController';
+import { CountryController } from 'base/APIs/CountryController';
 import { DataEntryController } from 'base/APIs/DataEntryController';
+import { LocationController } from 'base/APIs/LocationController';
 import { Gender } from 'base/constants/Gender';
 import { UserTypes } from 'base/constants/UserTypes';
 import { Stations } from 'base/Data/Stations';
 import { LocalStorageEnum } from 'base/enums/LocalStorageEnum.enum';
 import { BaseService } from 'base/services/base.service';
-import { takeUntil } from 'rxjs';
+import { takeUntil, tap } from 'rxjs';
 
 @Component({
   selector: 'app-data-entries-characteristics-list',
@@ -19,7 +22,11 @@ export class DataEntriesCharacteristicsListComponent extends BaseService impleme
   form: FormGroup = null;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   UserTypes = UserTypes;
-  Genders = Gender;
+
+  countries: any[] = [];
+  locations: any[] = [];
+  companies: any[] = [];
+
   displayedColumns: string[] = [
     'data.id',
     'data.name',
@@ -50,18 +57,44 @@ export class DataEntriesCharacteristicsListComponent extends BaseService impleme
   stations: any[] = Stations;
   totalCount: number = 0;
 
+  body: any = {};
+
   viewType: 'Grid' | 'Card' = 'Grid';
   base64Data: any;
   constructor(public override injector: Injector
 
   ) {
     super(injector);
+    this.initForm();
+    this.setForm();
+    if (this.paginator) {
+      console.log(this.paginator);
+      this.paginator.pageIndex = 0;
+      this.paginator.pageSize = 10;
+      this.paginator.page.pipe(tap(() => {
+      })).subscribe();
+    }
+    this.GetAll();
   }
-  ngAfterContentInit(): void {
+
+  ngAfterContentInit() {
+
   }
 
   ngOnInit() {
-    this.GetAll();
+    this.getLookups();
+  }
+
+  initForm() {
+    this.form = this.fb.group({
+      countryIds: new FormControl<number[]>([]),
+      locationIds: new FormControl<number[]>([]),
+      companyIds: new FormControl<number[]>([]),
+      status: new FormControl<number[]>([]),
+      searchKey: new FormControl<string>(''),
+      registrationDateFrom: new FormControl<Date>(null),
+      registrationDateTo: new FormControl<Date>(null),
+    });
   }
 
   handlePaginator(paginator: MatPaginator) {
@@ -71,11 +104,13 @@ export class DataEntriesCharacteristicsListComponent extends BaseService impleme
 
   GetAll() {
     this.spinnerService.show();
-    this.httpService.GET(`${DataEntryController.GetAll}`).subscribe({
+    var body = this.setForm();
+    console.log(body);
+    this.httpService.POST(`${DataEntryController.GetAll}`, body).subscribe({
       next: (res) => {
         if (res.isSuccess) {
-          this.dataSource = res.data;
-          this.totalCount = res.data.length;
+          this.dataSource = res.data.items;
+          this.totalCount = res.data.totalCount;
           this.spinnerService.hide();
         }
       },
@@ -88,28 +123,10 @@ export class DataEntriesCharacteristicsListComponent extends BaseService impleme
     });
   }
 
-  GetStatusName(status: number): string {
-    switch (status) {
-      case 0:
-        return this.translateService.instant('status.pending');
-      case 1:
-        return this.translateService.instant('status.accepted');
-      case 2:
-        return this.translateService.instant('status.rejected');
-      case 3:
-        return this.translateService.instant('status.completed');
-      case 4:
-        return this.translateService.instant('status.updated');
-      case 5:
-        return this.translateService.instant('status.deleted');
-      default:
-        break;
-    }
-  }
-
   exportToExcel() {
     this.spinnerService.show();
-    this.httpService.GET(DataEntryController.ExportAllDataEntries).subscribe({
+    var body = this.setForm();
+    this.httpService.POST(DataEntryController.ExportAllDataEntries, body).subscribe({
       next: (res) => {
         if (res.isSuccess) {
           this.base64Data = res.data;
@@ -126,6 +143,22 @@ export class DataEntriesCharacteristicsListComponent extends BaseService impleme
     });
   }
 
+  setForm(): any {
+    this.body = {
+      paginatorModel: {
+        pageNumber: this.paginator?.pageIndex ? this.paginator?.pageIndex + 1 : 1,
+        pageSize: this.paginator?.pageSize ?? 10,
+      },
+      searchKey: this.form?.value['searchKey'],
+      countryIds: this.form?.value['countryIds'],
+      locationIds: this.form?.value['locationIds'],
+      companyIds: this.form?.value['companyIds'],
+      registrationDateFrom: this.datepipe.transform(this.form?.value['registrationDateFrom'], 'yyyy-MM-dd'),
+      registrationDateTo: this.datepipe.transform(this.form?.value['registrationDateTo'], 'yyyy-MM-dd'),
+    };
+    return this.body;
+  }
+
   downloadFile() {
     this.spinnerService.show();
     const src = `data:text/csv;base64,${this.base64Data}`;
@@ -135,4 +168,57 @@ export class DataEntriesCharacteristicsListComponent extends BaseService impleme
     link.click();
     this.spinnerService.hide();
   }
+
+
+  getLookups() {
+    this.GetAllLocations();
+    this.GetAllCompanies();
+    this.GetAllCountries();
+  }
+
+  GetAllLocations() {
+    this.httpService.GET(LocationController.GetAllLocations).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.locations = res.data;
+          this.spinnerService.hide();
+        }
+      },
+      error: (err: Error) => {
+      },
+      complete: () => {
+      }
+    });
+  }
+
+  GetAllCompanies() {
+    this.spinnerService.show();
+    this.httpService.GET(CompanyController.GetAllCompanies).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.companies = res.data;
+        }
+      },
+      error: (err: Error) => {
+      },
+      complete: () => {
+      }
+    });
+  }
+
+  GetAllCountries() {
+    this.spinnerService.show();
+    this.httpService.GET(CountryController.GetAllCountries).subscribe({
+      next: (res) => {
+        if (res.isSuccess) {
+          this.countries = res.data;
+        }
+      },
+      error: (err: Error) => {
+      },
+      complete: () => {
+      }
+    });
+  }
+
 }

@@ -80,6 +80,8 @@
       "password": "كلمة المرور",
       "status": "الحالة",
       "registrationDate": "تاريخ التسجيل",
+      "registrationDateFrom": "تاريخ التسجيل من",
+      "registrationDateTo": "تاريخ التسجيل إلى",
       "AddNewDataRecord": "إضافة جديد",
       "notes": "ملاحظات",
       "createdBy": "إنشاء بواسطة",
@@ -134,7 +136,8 @@
       "reject": "رفض",
       "complete": "إكمال",
       "refresh": "تحديث",
-      "excel": "تصدير"
+      "excel": "تصدير",
+      "reset": "إعادة ضبط"
    },
    "status": {
       "activated": "مفعل",
@@ -193,6 +196,10 @@
       "admin": "أدمن",
       "companyUser": "موظف شركة",
       "dataEntry": "إدخال بيانات"
+   },
+   "filters": {
+      "filters": "الفلترة",
+      "searchKey": "معيار البحث"
    },
    "yes": "نعم",
    "no": "لا",
