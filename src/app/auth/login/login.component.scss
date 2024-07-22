@@ -87,13 +87,33 @@
 .mat-typography .mat-h2,
 .mat-typography .mat-headline-6,
 .mat-typography h2 {
-    font: 500 20px/32px Roboto, sans-serif;
+    font:
+        500 20px/32px Roboto,
+        sans-serif;
     letter-spacing: 0.0125em;
     margin: 0 0 16px;
 }
 .login-title {
     margin-bottom: 20px;
     text-align: center;
+    color: rgb(141, 73, 58);
+    font-weight: bold;
+}
+
+.mat-flat-button {
+    background-color: rgb(141, 73, 58) !important;
+    color: white !important;
+    font-weight: bold !important;
+    font-family: "Noto Kufi Arabic", sans-serif !important;
+}
+
+::ng-deep .mat-form-field-label {
+    /*change color of label*/
+    color: rgb(141, 73, 58) !important;
+}
+
+::ng-deep .mat-form-field {
+    color: rgb(141, 73, 58) !important;
 }
 
 .login-btn-section {
