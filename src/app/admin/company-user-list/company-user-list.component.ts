@@ -99,6 +99,7 @@ export class CompanyUserListComponent extends BaseService implements OnInit, Aft
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {

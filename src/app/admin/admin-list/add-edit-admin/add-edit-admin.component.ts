@@ -141,6 +141,7 @@ export class AddEditAdminComponent extends BaseService implements OnInit {
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {

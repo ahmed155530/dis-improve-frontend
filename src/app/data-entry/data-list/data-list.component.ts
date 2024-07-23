@@ -126,6 +126,7 @@ export class DataListComponent extends BaseService implements OnInit, AfterConte
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {
@@ -145,6 +146,7 @@ export class DataListComponent extends BaseService implements OnInit, AfterConte
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {
@@ -176,6 +178,7 @@ export class DataListComponent extends BaseService implements OnInit, AfterConte
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {

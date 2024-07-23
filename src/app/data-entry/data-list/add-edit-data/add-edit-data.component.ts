@@ -159,6 +159,7 @@ export class AddEditDataComponent extends BaseService implements OnInit {
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {
@@ -177,6 +178,7 @@ export class AddEditDataComponent extends BaseService implements OnInit {
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {
@@ -214,6 +216,7 @@ export class AddEditDataComponent extends BaseService implements OnInit {
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {

@@ -5,6 +5,6 @@
 
 export const environment = {
   BaseURL: 'https://localhost:7130/api',
-  // BaseURL: 'http://dis-improve-1.runasp.net/api',
+  //BaseURL: 'https://dis-improveapi.azurewebsites.net/api',
   production: false
 };

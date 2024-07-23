@@ -132,6 +132,7 @@
         }
     },
     "swal": {
+        "Error":"Error",
         "Success": "Success",
         "Close": "Close",
         "Are you sure?": "Are you sure?",

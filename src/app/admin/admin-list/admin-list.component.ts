@@ -97,6 +97,7 @@ export class AdminListComponent extends BaseService implements OnInit, AfterCont
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {
@@ -120,6 +121,7 @@ export class AdminListComponent extends BaseService implements OnInit, AfterCont
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {

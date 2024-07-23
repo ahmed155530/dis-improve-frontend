@@ -228,6 +228,7 @@ export class DashboardComponent extends BaseService implements OnInit, AfterView
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {
@@ -247,6 +248,7 @@ export class DashboardComponent extends BaseService implements OnInit, AfterView
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {
@@ -267,6 +269,7 @@ export class DashboardComponent extends BaseService implements OnInit, AfterView
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {

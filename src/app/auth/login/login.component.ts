@@ -58,7 +58,7 @@ export class LoginComponent extends BaseService implements OnInit {
           this.swalService.alertWithError(res['message']);
       },
       error: (err: Error) => {
-        this.swalService.alertWithError(err.message);
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {

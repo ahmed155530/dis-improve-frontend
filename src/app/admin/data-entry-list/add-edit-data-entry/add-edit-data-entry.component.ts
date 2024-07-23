@@ -150,6 +150,7 @@ export class AddEditDataEntryComponent extends BaseService implements OnInit {
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {
@@ -168,6 +169,7 @@ export class AddEditDataEntryComponent extends BaseService implements OnInit {
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {

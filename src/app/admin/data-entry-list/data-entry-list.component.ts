@@ -99,6 +99,7 @@ export class DataEntryListComponent extends BaseService implements OnInit, After
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {

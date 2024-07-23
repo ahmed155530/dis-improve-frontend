@@ -81,6 +81,7 @@ export class ConfigurationListComponent extends BaseService implements OnInit, A
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {
@@ -104,6 +105,7 @@ export class ConfigurationListComponent extends BaseService implements OnInit, A
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {

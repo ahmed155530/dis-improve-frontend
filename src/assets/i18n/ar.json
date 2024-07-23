@@ -169,6 +169,7 @@
       "Sorry, no content for this page": "للاسف لا يوجد محتوى لهذه الصفحة"
    },
    "swal": {
+      "Error":"خطأ",
       "Success": "نجاح",
       "Close": "إغلاق",
       "Are you sure?": "هل أنت متأكد ؟",

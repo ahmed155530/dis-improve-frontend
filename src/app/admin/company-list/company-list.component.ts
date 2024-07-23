@@ -69,6 +69,7 @@ export class CompanyListComponent extends BaseService implements OnInit, AfterCo
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {
@@ -116,6 +117,7 @@ export class CompanyListComponent extends BaseService implements OnInit, AfterCo
         }
       },
       error: (err: Error) => {
+        this.swalService.alertWithError('ErrorOccured');
         this.spinnerService.hide();
       },
       complete: () => {
